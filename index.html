@@ -4,444 +4,33 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Farsi-Origin | فارسی‌سازی بازی‌های ویدیویی</title>
-<meta name="description" content="فارسی‌سازی بازی‌های ویدیویی — هر فارسی‌سازی به‌محض آپلود در گیت‌هاب، این‌جا به‌صورت یک محصول قابل دانلود ظاهر می‌شود." />
-<meta name="theme-color" content="#060A0F" />
+<meta name="description" content="با زبون شیرین فارسی بازیاتو تجربه کن! - در مخزن گت هاب هم فایل فارسی ساز بازی وجود دارد -" />
+<meta name="theme-color" content="#0A1118" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%230b4f36'/%3E%3Ccircle cx='11' cy='16' r='3' fill='%2310b981'/%3E%3Ccircle cx='21' cy='16' r='3' fill='%2310b981'/%3E%3C/svg%3E" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-
-<style>
-  :root {
-    /* تم ارتقایافته: سایبر نئون یشمی و تاریکی فوق عمیق */
-    --bg-deep: #060A0F;
-    --bg-panel: #0E1721;
-    --bg-panel-light: #162332;
-    --jade-dark: #063A27;
-    --jade-bright: #10B981;
-    --jade-glow: #00FF9D;
-    --jade-soft: #A7F3D0;
-    --text-primary: #F8FAFC;
-    --text-muted: #94A3B8;
-    --border-subtle: rgba(16, 185, 129, 0.12);
-    --border-glow: rgba(16, 185, 129, 0.4);
-    --font-display: 'Lalezar', sans-serif;
-    --font-body: 'Noto Sans Arabic', sans-serif;
-    --font-brand: 'Space Grotesk', sans-serif;
-    --radius-lg: 24px;
-    --radius-md: 14px;
-    --ease: cubic-bezier(.16, 1, .3, 1);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--bg-deep);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-  img { max-width: 100%; display: block; }
-  a { color: inherit; text-decoration: none; }
-  ::selection { background: var(--jade-bright); color: var(--bg-deep); }
-  :focus-visible { outline: 2px solid var(--jade-glow); outline-offset: 4px; border-radius: 4px; }
-
-  .container { max-width: 1200px; margin-inline: auto; padding-inline: clamp(1rem, 4vw, 2rem); }
-
-  /* پس‌زمینه زنده و گرافیکی */
-  .bg-ambient {
-    position: fixed; inset: 0; z-index: -1; pointer-events: none;
-    background:
-      radial-gradient(800px 500px at 85% -10%, rgba(16, 185, 129, 0.15), transparent 70%),
-      radial-gradient(600px 400px at 10% 30%, rgba(0, 255, 157, 0.08), transparent 60%),
-      radial-gradient(800px 600px at 50% 110%, rgba(6, 58, 39, 0.25), transparent 70%),
-      var(--bg-deep);
-  }
-  .bg-grid {
-    position: fixed; inset: 0; z-index: -1; pointer-events: none;
-    background-image: linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-  }
-
-  /* ---------- Header ---------- */
-  .site-header {
-    position: sticky; top: 0; z-index: 40;
-    background: rgba(6, 10, 15, 0.8);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border-subtle);
-  }
-  .header-inner { display: flex; align-items: center; justify-content: space-between; padding-block: 0.85rem; }
-  .logo { display: flex; align-items: center; gap: 0.75rem; }
-  
-  .logo-mark { width: 42px; height: 42px; flex: none; transition: transform 0.4s var(--ease), filter 0.4s var(--ease); filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.3)); }
-  .logo:hover .logo-mark { transform: scale(1.1) rotate(-3deg); filter: drop-shadow(0 0 14px rgba(0, 255, 157, 0.6)); }
-  
-  .logo-text { font-family: var(--font-brand); font-weight: 700; font-size: 1.35rem; letter-spacing: -0.01em; }
-  .logo-accent { color: var(--jade-bright); text-shadow: 0 0 12px rgba(16, 185, 129, 0.4); }
-  .nav { display: flex; align-items: center; gap: clamp(1.2rem, 3vw, 2.2rem); font-size: 0.95rem; color: var(--text-muted); font-weight: 500; }
-  .nav a { transition: color .2s var(--ease), text-shadow .2s var(--ease); }
-  .nav a:hover, .nav a:focus-visible { color: var(--jade-glow); text-shadow: 0 0 8px rgba(0, 255, 157, 0.4); }
-
-  /* ---------- Sections Generic ---------- */
-  section { padding-block: clamp(3.5rem, 8vw, 6rem); }
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-family: var(--font-brand); font-weight: 700; font-size: 0.8rem;
-    letter-spacing: 0.15em; color: var(--jade-bright); text-transform: uppercase;
-    margin: 0 0 0.75rem; padding: 0.3rem 0.8rem; border-radius: 100px;
-    background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.2);
-  }
-  .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--jade-glow); box-shadow: 0 0 8px var(--jade-glow); }
-  h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 3.5vw, 2.8rem); margin: 0 0 2.5rem; letter-spacing: 0.02em; }
-
-  /* ---------- Hero & Origin Avatar ---------- */
-  .hero { padding-block: clamp(4rem, 10vw, 7.5rem) clamp(3rem, 6vw, 5rem); position: relative; }
-  .hero-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
-  @media (min-width: 900px) { .hero-grid { grid-template-columns: 1.2fr 0.8fr; } }
-
-  .hero-title {
-    font-family: var(--font-display); font-weight: 400;
-    font-size: clamp(2.6rem, 5.5vw, 4.4rem); line-height: 1.2; margin: 0 0 1.2rem;
-    opacity: 0; transform: translateY(18px);
-    animation: riseIn .8s var(--ease) .05s forwards;
-    background: linear-gradient(135deg, #FFFFFF 30%, var(--jade-soft) 80%, var(--jade-bright) 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .hero-sub {
-    font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--text-muted); max-width: 52ch; margin: 0 0 2.2rem;
-    opacity: 0; transform: translateY(18px);
-    animation: riseIn .8s var(--ease) .2s forwards;
-  }
-  .hero-actions {
-    display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
-    opacity: 0; transform: translateY(18px);
-    animation: riseIn .8s var(--ease) .35s forwards;
-  }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    background: linear-gradient(135deg, var(--jade-bright), #059669); color: #000; font-weight: 800; font-size: 1rem;
-    padding: 0.9rem 1.8rem; border-radius: 100px;
-    box-shadow: 0 8px 30px -6px rgba(16, 185, 129, 0.5), inset 0 1px 0 rgba(255,255,255,0.4);
-    transition: transform .25s var(--ease), box-shadow .25s var(--ease), filter .25s var(--ease);
-  }
-  .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 36px -6px rgba(0, 255, 157, 0.65); filter: brightness(1.1); }
-  .btn-primary:active { transform: translateY(0) scale(0.98); }
-
-  /* Origin Mascot Showcase Card */
-  .origin-card {
-    position: relative; background: linear-gradient(145deg, rgba(14, 23, 33, 0.9), rgba(6, 10, 15, 0.95));
-    border: 1px solid var(--border-glow); border-radius: var(--radius-lg); padding: 2rem;
-    display: flex; flex-direction: column; align-items: center; text-align: center;
-    box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5), 0 0 30px -10px rgba(16, 185, 129, 0.2);
-    backdrop-filter: blur(10px); opacity: 0; transform: translateY(20px) scale(0.95);
-    animation: riseIn .8s var(--ease) .3s forwards;
-  }
-  .origin-avatar-wrapper { position: relative; width: 140px; height: 140px; margin-bottom: 1.2rem; }
-  .origin-avatar-bg {
-    position: absolute; inset: -10px; border-radius: 50%;
-    background: conic-gradient(from 0deg, transparent, var(--jade-bright), transparent 60%);
-    animation: rotateHue 8s linear infinite; opacity: 0.6; filter: blur(8px);
-  }
-  .origin-svg { width: 100%; height: 100%; position: relative; z-index: 2; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6)); }
-  .origin-badge {
-    font-family: var(--font-brand); font-size: 0.75rem; font-weight: 700; color: var(--jade-glow);
-    background: rgba(6, 58, 39, 0.6); padding: 0.2rem 0.7rem; border-radius: 100px; border: 1px solid var(--jade-bright);
-    margin-bottom: 0.4rem; letter-spacing: 0.05em;
-  }
-  .origin-name { font-family: var(--font-display); font-size: 1.6rem; margin: 0 0 0.2rem; letter-spacing: 0.03em; }
-  .origin-desc { font-size: 0.88rem; color: var(--text-muted); margin: 0; }
-
-  /* ---------- How it works ---------- */
-  .how { border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); background: rgba(14, 23, 33, 0.4); }
-  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
-  .steps li {
-    background: var(--bg-panel); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.8rem 1.5rem;
-    transition: transform .3s var(--ease), border-color .3s var(--ease);
-  }
-  .steps li:hover { transform: translateY(-4px); border-color: rgba(16, 185, 129, 0.3); }
-  .step-num {
-    display: flex; align-items: center; justify-content: center;
-    width: 3rem; height: 3rem; border-radius: 12px;
-    background: linear-gradient(135deg, var(--jade-dark), var(--bg-deep)); border: 1px solid var(--jade-bright);
-    font-family: var(--font-brand); font-weight: 700; font-size: 1.2rem; color: var(--jade-glow);
-    margin-bottom: 1.2rem; box-shadow: 0 0 15px rgba(16,185,129,0.2);
-  }
-  .steps h3 { font-family: var(--font-body); font-weight: 700; font-size: 1.1rem; margin: 0 0 0.5rem; }
-  .steps p { color: var(--text-muted); font-size: 0.92rem; margin: 0; }
-
-  /* ---------- Games Grid ---------- */
-  .games-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.8rem; }
-  .game-card {
-    background: var(--bg-panel); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg);
-    overflow: hidden; display: flex; flex-direction: column;
-    opacity: 0; transform: translateY(22px);
-    transition: opacity .6s var(--ease), transform .6s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
-    transition-delay: var(--delay, 0ms); position: relative;
-  }
-  .game-card.in-view { opacity: 1; transform: translateY(0); }
-  .game-card:not(.skeleton):hover {
-    border-color: var(--border-glow);
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(16, 185, 129, 0.25);
-    transform: translateY(-6px);
-  }
-  .card-media { position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--bg-panel-light); }
-  .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
-  .game-card:hover .card-media img { transform: scale(1.08); }
-  .card-media::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(to top, var(--bg-panel) 0%, transparent 40%);
-  }
-  .ribbon {
-    position: absolute; top: 1rem; right: 1rem; z-index: 2;
-    background: rgba(6, 10, 15, 0.85); color: var(--jade-glow); font-weight: 700; font-size: 0.75rem;
-    padding: 0.35rem 0.8rem; border-radius: 100px; backdrop-filter: blur(8px);
-    border: 1px solid var(--jade-bright); box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  }
-  .card-body { padding: 1.25rem 1.25rem 1.4rem; display: flex; flex-direction: column; gap: 0.7rem; flex: 1; position: relative; z-index: 2; }
-  .card-title { font-family: var(--font-display); font-weight: 400; font-size: 1.4rem; margin: 0; line-height: 1.25; letter-spacing: 0.01em; }
-  .card-desc {
-    color: var(--text-muted); font-size: 0.9rem; margin: 0; flex: 1;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.6;
-  }
-  .card-meta { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; color: var(--jade-soft); font-weight: 600; padding-top: 0.2rem; }
-  .btn-download {
-    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-    background: linear-gradient(135deg, var(--jade-bright), #059669); color: #000; font-weight: 700; font-size: 0.95rem;
-    padding: 0.8rem 1rem; border-radius: var(--radius-md); margin-top: 0.4rem;
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-    transition: transform .2s var(--ease), box-shadow .2s var(--ease), filter .2s var(--ease);
-  }
-  .btn-download:hover { filter: brightness(1.15); box-shadow: 0 6px 20px rgba(0, 255, 157, 0.5); transform: translateY(-1px); }
-  .btn-download:active { transform: translateY(1px); }
-  .icon-download { width: 19px; height: 19px; stroke-width: 2.5; }
-
-  /* ---------- Skeleton ---------- */
-  .game-card.skeleton .card-media { background: linear-gradient(100deg, var(--bg-panel-light) 30%, rgba(255,255,255,0.05) 50%, var(--bg-panel-light) 70%); background-size: 200% 100%; animation: shimmer 1.6s infinite linear; }
-  .skeleton-line { height: 0.9rem; border-radius: 6px; margin-bottom: 0.7rem; background: linear-gradient(100deg, var(--bg-panel-light) 30%, rgba(255,255,255,0.05) 50%, var(--bg-panel-light) 70%); background-size: 200% 100%; animation: shimmer 1.6s infinite linear; }
-  .skeleton .w-70 { width: 70%; } .skeleton .w-100 { width: 100%; } .skeleton .w-40 { width: 40%; }
-
-  /* ---------- Empty / Error States ---------- */
-  .state-message {
-    grid-column: 1 / -1; text-align: center; padding: 4rem 1.5rem;
-    background: var(--bg-panel); border: 1px dashed var(--border-glow); border-radius: var(--radius-lg);
-  }
-  .state-title { font-family: var(--font-display); font-size: 1.6rem; margin: 0 0 0.5rem; }
-  .state-sub { color: var(--text-muted); margin: 0 0 1.5rem; }
-  .btn-retry {
-    background: transparent; border: 2px solid var(--jade-bright); color: var(--jade-glow);
-    font-family: var(--font-body); font-weight: 700; padding: 0.7rem 1.8rem; border-radius: 100px;
-    cursor: pointer; transition: background .25s var(--ease), color .25s var(--ease), box-shadow .25s var(--ease);
-  }
-  .btn-retry:hover { background: var(--jade-bright); color: #000; box-shadow: 0 0 20px rgba(16, 185, 129, 0.5); }
-
-  /* ---------- Footer ---------- */
-  .site-footer { border-top: 1px solid var(--border-subtle); padding-block: 3rem; background: rgba(6, 10, 15, 0.9); }
-  .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
-  .footer-inner p { color: var(--text-muted); font-size: 0.9rem; margin: 0.4rem 0 0; }
-  .footer-link {
-    display: inline-flex; align-items: center; gap: 0.4rem; color: var(--jade-glow); font-weight: 600; font-size: 0.95rem;
-    padding: 0.5rem 1rem; border-radius: 100px; background: rgba(16, 185, 129, 0.08); border: 1px solid var(--border-subtle);
-    transition: background .2s var(--ease), border-color .2s var(--ease);
-  }
-  .footer-link:hover { background: rgba(16, 185, 129, 0.18); border-color: var(--jade-bright); }
-
-  @keyframes riseIn { to { opacity: 1; transform: translateY(0) scale(1); } }
-  @keyframes shimmer { to { background-position: -200% 0; } }
-  @keyframes rotateHue { 100% { transform: rotate(360deg); } }
-
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .hero-title, .hero-sub, .hero-actions, .origin-card, .game-card { animation: none !important; opacity: 1 !important; transform: none !important; transition: none !important; }
-    .game-card:not(.skeleton):hover .card-media img { transform: none; }
-    .origin-avatar-bg { animation: none; }
-  }
-</style>
-</head>
-<body>
-
-<div class="bg-ambient" aria-hidden="true"></div>
-<div class="bg-grid" aria-hidden="true"></div>
-
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="logo" href="#top" aria-label="Farsi-Origin">
-      <!-- کاراکتر اختصاصی ORIGIN: کلاهخود سایبرپنک تاکتیکال با جزئیات دقیق، مدار نوری و چشم‌های زمردی درخشان -->
-      <svg class="logo-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="20" cy="20" r="18" fill="#0A1118" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4 2"/>
-        <!-- بدنه ماسک -->
-        <path d="M10 16C10 10.4772 14.4772 6 20 6C25.5228 6 30 10.4772 30 16V23C30 27.4183 26.4183 31 22 31H18C13.5817 31 10 27.4183 10 23V16Z" fill="#0B4F36" stroke="#10B981" stroke-width="1.2"/>
-        <!-- زاویه فک و چانه -->
-        <path d="M14 26L20 33L26 26H14Z" fill="#042016"/>
-        <!-- چشم‌های دیجیتالی / ویزور مدرن -->
-        <path d="M12 16C12 14.8954 12.8954 14 14 14H17C18.1046 14 19 14.8954 19 16V17C19 18.1046 18.1046 19 17 19H14C12.8954 19 12 18.1046 12 17V16Z" fill="#00FF9D"/>
-        <path d="M21 16C21 14.8954 21.8954 14 23 14H26C27.1046 14 28 14.8954 28 16V17C28 18.1046 27.1046 19 26 19H23C21.8954 19 21 18.1046 21 17V16Z" fill="#00FF9D"/>
-        <!-- خطوط مدار هوشمند روی پیشانی -->
-        <path d="M20 7V11M16 9H24" stroke="#00FF9D" stroke-width="1.2" stroke-linecap="round"/>
-        <!-- هدست گیمینگ جفت کلاهخود -->
-        <rect x="6" y="15" width="4" height="9" rx="2" fill="#10B981"/>
-        <rect x="30" y="15" width="4" height="9" rx="2" fill="#10B981"/>
-        <!-- شیارهای تهویه دهان -->
-        <line x1="17" y1="24" x2="23" y2="24" stroke="#00FF9D" stroke-width="1.5" stroke-linecap="round"/>
-        <line x1="18" y1="27" x2="22" y2="27" stroke="#10B981" stroke-width="1.2" stroke-linecap="round"/>
-      </svg>
-      <span class="logo-text">Farsi<span class="logo-accent">-Origin</span></span>
-    </a>
-    <nav class="nav">
-      <a href="#games">بازی‌ها</a>
-      <a href="#how">فرایند</a>
-      <a href="https://github.com/Origin-Core/Farsi-Origin-" target="_blank" rel="noopener">گیت‌هاب</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <section class="hero" id="top">
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-content">
-          <p class="eyebrow">مرجع فارسی‌سازی بازی‌های ویدیویی</p>
-          <h1 class="hero-title">بازی کن، به زبون خودت.</h1>
-          <p class="hero-sub">هر فارسی‌سازی این‌جا یه فایل آماده‌ست؛ دانلودش کن، رو بازیت نصب کن و این‌بار کل داستان رو به فارسی تجربه کن.</p>
-          <div class="hero-actions">
-            <a class="btn-primary" href="#games">دیدن فارسی‌سازی‌ها ↓</a>
-          </div>
-        </div>
-
-        <!-- کارت معرفی هویت سایت (Origin) -->
-        <div class="origin-card">
-          <div class="origin-avatar-wrapper">
-            <div class="origin-avatar-bg"></div>
-            <svg class="origin-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="45" fill="#0A1118" stroke="#10B981" stroke-width="2"/>
-              <path d="M25 40C25 26.1929 36.1929 15 50 15C63.8071 15 75 26.1929 75 40V58C75 69.0457 66.0457 78 55 78H45C33.9543 78 25 69.0457 25 58V40Z" fill="#0B4F36" stroke="#00FF9D" stroke-width="1.5"/>
-              <path d="M35 65L50 82L65 65H35Z" fill="#042016"/>
-              <!-- چشمان نئونی با انعکاس نور -->
-              <rect x="30" y="36" width="16" height="10" rx="4" fill="#00FF9D"/>
-              <rect x="54" y="36" width="16" height="10" rx="4" fill="#00FF9D"/>
-              <circle cx="35" cy="40" r="2" fill="#FFFFFF"/>
-              <circle cx="59" cy="40" r="2" fill="#FFFFFF"/>
-              <!-- مدار پیشانی -->
-              <path d="M50 16V26M40 21H60" stroke="#00FF9D" stroke-width="2" stroke-linecap="round"/>
-              <circle cx="50" cy="26" r="2.5" fill="#00FF9D"/>
-              <!-- هدست جانبی -->
-              <rect x="16" y="36" width="9" height="22" rx="4" fill="#10B981" stroke="#00FF9D" stroke-width="1"/>
-              <rect x="75" y="36" width="9" height="22" rx="4" fill="#10B981" stroke="#00FF9D" stroke-width="1"/>
-              <!-- دهان تاکتیکال -->
-              <line x1="40" y1="58" x2="60" y2="58" stroke="#00FF9D" stroke-width="3" stroke-linecap="round"/>
-              <line x1="43" y1="64" x2="57" y2="64" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <span class="origin-badge">SYSTEM AI / MASCOT</span>
-          <h3 class="origin-name">ORIGIN</h3>
-          <p class="origin-desc">دستیار هوشمند پروژه‌ی فارسی‌سازی. آماده برای آماده‌سازی فایل‌ها و ترجمه بازی‌ها.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="how" id="how">
-    <div class="container">
-      <p class="eyebrow">فرایند ساده کار</p>
-      <h2>از ترجمه تا دانلود</h2>
-      <ol class="steps">
-        <li>
-          <span class="step-num">۱</span>
-          <h3>ترجمه و تست</h3>
-          <p>متن‌های بازی ترجمه می‌شن و روی نسخه‌ی اصلی تست می‌شن تا چیزی خراب نشه.</p>
-        </li>
-        <li>
-          <span class="step-num">۲</span>
-          <h3>انتشار در مخزن</h3>
-          <p>عکس بازی و فایل فارسی‌سازی، با یک اسم مشترک، در ریشه‌ی همین مخزن گیت‌هاب قرار می‌گیرن.</p>
-        </li>
-        <li>
-          <span class="step-num">۳</span>
-          <h3>دانلود مستقیم</h3>
-          <p>همون لحظه، بازی به‌صورت یه محصول کامل این‌جا ظاهر می‌شه؛ آماده برای دانلود.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="games" id="games">
-    <div class="container">
-      <p class="eyebrow">کتابخانه بازی‌ها</p>
-      <h2>فارسی‌سازی‌های موجود</h2>
-      <div id="games-grid" class="games-grid" aria-live="polite"></div>
-    </div>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div>
-      <span class="logo-text">Farsi<span class="logo-accent">-Origin</span></span>
-      <p>یک پروژه‌ی متن‌باز برای فارسی‌سازی بازی‌های ویدیویی.</p>
-    </div>
-    <a class="footer-link" href="https://github.com/Origin-Core/Farsi-Origin-" target="_blank" rel="noopener">
-      <span>مخزن گیت‌هاب</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6کد شما بازطراحی شد. **عملکردها، کدهای جاوااسکریپت و منطق دریافت اطلاعات از گیت‌هاب کاملاً دست‌نخورده باقی ماندند** و تغییرات زیر روی ظاهر و برندینگ سایت اعمال شد:
-
-### 🎨 تغییرات و بهبودهای ظاهری
-1. **طراحی مجدد لوگو و کاراکتر Origin:** 
-   * لوگوی قبلی جای خود را به **کاراکتر هوشمند و تکاور Origin** داده است؛ یک روبات/تکاور سایبرپانک با کلاهخود تاکتیکال، مانیتورهای جانبی و چشمی‌های سبز درخشان.
-   * جزئیات لوگو مثل هندسه ماسک و سایه‌زنی‌ها بسیار دقیق‌تر و مدرن‌تر اجرا شده‌اند.
-2. **رنگ‌بندی و اتمسفر جدید (Ultra-Dark & Jade Neon):**
-   * اضافه شدن افکت **Glow** (درخشش نئونی سبز یشمی) به المان‌های اصلی مانند دکمه‌ها، عنوان‌ها و لوگو.
-   * افزودن خطوط شبکه الکترونیکی (Grid Pattern) و ذرات نورانی متحرک در پس‌زمینه برای ایجاد حس یک پایگاه گیمینگ مدرن.
-3. **ارتقای کارت‌های بازی (Game Cards):**
-   * اضافه شدن هاله نوری هنگام هور (Hover) روی کارت‌ها.
-   * افکت Glassmorphism (شیشه‌ای مات) برای نوار عنوان و دکمه دانلود.
-   * جابه‌جایی و بهبود ظاهری Ribbon (برچسب) روی تصویر بازی.
-4. **تایپوگرافی و افکت‌های بصری:**
-   * انیمیشن‌های روان‌تر هنگام باز شدن صفحه و اسکرول.
-   * هایلایت متنی مدرن برای تیتر اصلی صفحه.
-
----
-
-### 💻 کد کامل و ارتقایافته (آماده استفاده)
-
-```html
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Farsi-Origin | فارسی‌سازی بازی‌های ویدیویی</title>
-<meta name="description" content="فارسی‌سازی بازی‌های ویدیویی — هر فارسی‌سازی به‌محض آپلود در گیت‌هاب، این‌جا به‌صورت یک محصول قابل دانلود ظاهر می‌شود." />
-<meta name="theme-color" content="#060A0E" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)' viewBox='0 0 32 32'%3E%3Cpath d='M16 2L4 8v8c0 7.5 5.1 14.5 12 16 6.9-1.5 12-8.5 12-16V8L16 2z' fill='%23052E20' stroke='%2310B981' stroke-width='2'/%3E%3Ccircle cx='11' cy='15' r='2.5' fill='%2310B981'/%3E%3Ccircle cx='21' cy='15' r='2.5' fill='%2310B981'/%3E%3C/svg%3E" />
-
-<link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)" />
-<link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin />
-<link href="[https://fonts.googleapis.com/css2?family=Lalezar&family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Lalezar&family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap)" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 
 <style>
   :root{
-    /* تم مدرن و خفن سایبر-یشمی */
-    --bg-deep:#05090E;             /* مشکی/سرمه‌ای فوق‌العاده تیره */
-    --bg-panel:#0B131B;            /* سرمه‌ای تیره شیشه‌ای برای کارت‌ها */
-    --bg-panel-hover:#121E2A;      /* رنگ کارت در حالت هاور */
-    --jade-dark:#052E20;           /* سبز یشمی بسیار تیره */
-    --jade-main:#10B981;           /* سبز زمردی/یشمی اصلی و درخشان */
-    --jade-glow:rgba(16,185,129,0.35); /* هاله نور سبز */
-    --jade-soft:#6EE7B7;           /* سبز روشن ملایم برای متن */
-    --text-primary:#F8FAFC;        /* متن سفید درخشان */
-    --text-muted:#94A3B8;          /* متن خاکستری ملایم */
-    --border-subtle:rgba(16,185,129,0.15);
-    --border-glow:rgba(16,185,129,0.4);
+   /
+    --bg-deep:#0A1118;            
+    --bg-panel:#111C26;           
+    --bg-panel-light:#1A2936;    
+    --jade-dark:#0B4F36;        
+    --jade-bright:#10B981;     
+    --jade-soft:#A7F3D0;        
+    --teal:#34D399;              
+    --text-primary:#F1F5F9;     
+    --text-muted:#94A3B8;       
+    --border-subtle:rgba(52,211,153,0.08);
     --font-display:'Lalezar', sans-serif;
     --font-body:'Noto Sans Arabic', sans-serif;
     --font-brand:'Space Grotesk', sans-serif;
-    --radius-lg:22px;
+    --radius-lg:20px;
     --radius-md:14px;
-    --ease:cubic-bezier(.16, 1, .3, 1);
+    --ease:cubic-bezier(.22,1,.36,1);
   }
 
   *,*::before,*::after{ box-sizing:border-box; }
@@ -453,228 +42,166 @@
     font-family:var(--font-body);
     line-height:1.7;
     -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
   }
   img{ max-width:100%; display:block; }
   a{ color:inherit; text-decoration:none; }
-  ::selection{ background:var(--jade-main); color:var(--bg-deep); }
-  :focus-visible{ outline:2px solid var(--jade-main); outline-offset:4px; border-radius:6px; }
+  ::selection{ background:var(--jade-bright); color:var(--bg-deep); }
+  :focus-visible{ outline:2px solid var(--jade-bright); outline-offset:3px; border-radius:4px; }
 
-  .container{ max-width:1200px; margin-inline:auto; padding-inline:clamp(1.2rem,4vw,2.5rem); }
+  .container{ max-width:1180px; margin-inline:auto; padding-inline:clamp(1rem,4vw,2rem); }
 
-  /* پس‌زمینه زنده شبکه گیمینگ */
   .bg-ambient{
     position:fixed; inset:0; z-index:-1; pointer-events:none;
     background:
-      radial-gradient(800px 500px at 85% -10%, rgba(16,185,129,0.15), transparent 70%),
-      radial-gradient(600px 400px at 15% 30%, rgba(5,46,32,0.4), transparent 60%),
-      radial-gradient(500px 500px at 50% 85%, rgba(16,185,129,0.08), transparent 70%),
+      radial-gradient(600px 420px at 85% -5%, rgba(16,185,129,0.12), transparent 60%),
+      radial-gradient(560px 420px at 10% 15%, rgba(52,211,153,0.06), transparent 60%),
       var(--bg-deep);
   }
-  .bg-grid{
-    position:fixed; inset:0; z-index:-1; pointer-events:none;
-    background-image: linear-gradient(to right, rgba(16,185,129,0.03) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(16,185,129,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
-  }
 
-  /* ---------- Header ---------- */
+ 
   .site-header{
     position:sticky; top:0; z-index:40;
-    background:rgba(5,9,14,0.85);
-    backdrop-filter:blur(16px);
+    background:rgba(10,17,24,0.75);
+    backdrop-filter:blur(10px);
     border-bottom:1px solid var(--border-subtle);
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
   }
-  .header-inner{ display:flex; align-items:center; justify-content:space-between; padding-block:0.85rem; }
+  .header-inner{ display:flex; align-items:center; justify-content:space-between; padding-block:0.9rem; }
+  .logo{ display:flex; align-items:center; gap:0.65rem; }
   
-  .logo{ display:flex; align-items:center; gap:0.85rem; group: cursor:pointer; }
-  .logo-mark-wrap{
-    position:relative;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .logo-mark-wrap::after{
-    content:''; position:absolute; inset:-4px;
-    background:var(--jade-main); border-radius:50%;
-    filter:blur(10px); opacity:0.3;
-    transition:opacity 0.3s var(--ease);
-  }
-  .logo:hover .logo-mark-wrap::after{ opacity:0.7; }
+ 
+  .logo-mark{ width:36px; height:36px; flex:none; transition: transform 0.3s var(--ease); }
+  .logo:hover .logo-mark { transform: scale(1.08) rotate(-4deg); }
   
-  .logo-mark{ 
-    width:42px; height:42px; flex:none; position:relative; z-index:1;
-    transition: transform 0.4s var(--ease); 
-    filter: drop-shadow(0 2px 8px rgba(16,185,129,0.4));
-  }
-  .logo:hover .logo-mark { transform: scale(1.1) rotate(-3deg); }
-  
-  .logo-text{ font-family:var(--font-brand); font-weight:800; font-size:1.35rem; letter-spacing:-0.01em; }
-  .logo-accent{ 
-    color:var(--jade-main); 
-    text-shadow: 0 0 12px var(--jade-glow);
-  }
-  .nav{ display:flex; align-items:center; gap:clamp(1.2rem,3vw,2.2rem); font-size:0.95rem; font-weight:600; color:var(--text-muted); }
-  .nav a{ transition:all .2s var(--ease); position:relative; padding-block:0.2rem; }
-  .nav a:hover, .nav a:focus-visible{ color:var(--jade-soft); text-shadow:0 0 8px var(--jade-glow); }
+  .logo-text{ font-family:var(--font-brand); font-weight:700; font-size:1.25rem; letter-spacing:0.01em; }
+  .logo-accent{ color:var(--jade-bright); }
+  .nav{ display:flex; align-items:center; gap:clamp(1rem,3vw,2rem); font-size:0.95rem; color:var(--text-muted); }
+  .nav a{ transition:color .2s var(--ease); }
+  .nav a:hover, .nav a:focus-visible{ color:var(--text-primary); }
 
-  /* ---------- Sections generic ---------- */
-  section{ padding-block:clamp(3.5rem,8vw,6rem); }
+ 
+  section{ padding-block:clamp(3rem,8vw,5.5rem); }
   .eyebrow{
-    display:inline-flex; align-items:center; gap:0.5rem;
-    font-family:var(--font-brand); font-weight:700; font-size:0.82rem;
-    letter-spacing:0.15em; color:var(--jade-main); text-transform:uppercase;
-    margin:0 0 0.8rem;
-    background:rgba(16,185,129,0.08); padding:0.35rem 0.9rem; border-radius:100px;
-    border:1px solid rgba(16,185,129,0.2);
+    font-family:var(--font-brand); font-weight:600; font-size:0.8rem;
+    letter-spacing:0.12em; color:var(--jade-bright); text-transform:uppercase;
+    margin:0 0 0.75rem;
   }
-  .eyebrow::before{
-    content:''; width:6px; height:6px; border-radius:50%; background:var(--jade-main);
-    box-shadow: 0 0 8px var(--jade-main);
-  }
-  h2{ font-family:var(--font-display); font-weight:400; font-size:clamp(2rem,3.5vw,2.8rem); margin:0 0 2.5rem; letter-spacing:0.02em; }
+  h2{ font-family:var(--font-display); font-weight:400; font-size:clamp(1.8rem,3.2vw,2.5rem); margin:0 0 2.5rem; }
 
-  /* ---------- Hero ---------- */
-  .hero{ padding-block:clamp(4.5rem,12vw,7.5rem) clamp(3.5rem,8vw,5.5rem); position:relative; }
-  .hero-inner{ max-width:820px; }
+ 
+  .hero{ padding-block:clamp(4rem,12vw,7rem) clamp(3rem,8vw,5rem); position:relative; overflow:hidden; }
+  .hero-inner{ max-width:760px; }
   .hero-title{
     font-family:var(--font-display); font-weight:400;
-    font-size:clamp(2.6rem,6.5vw,4.5rem); line-height:1.2; margin:0 0 1.2rem;
-    opacity:0; transform:translateY(16px);
+    font-size:clamp(2.4rem,6vw,4.2rem); line-height:1.25; margin:0 0 1.1rem;
+    opacity:0; transform:translateY(14px);
     animation:riseIn .7s var(--ease) .05s forwards;
-    background: linear-gradient(135deg, #FFFFFF 30%, var(--jade-soft) 80%, var(--jade-main) 100%);
+    background: linear-gradient(135deg, #FFF, var(--jade-soft));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 4px 20px rgba(0,0,0,0.5));
   }
   .hero-sub{
-    font-size:clamp(1.05rem,1.8vw,1.2rem); color:var(--text-muted); max-width:56ch; margin:0 0 2.2rem;
-    opacity:0; transform:translateY(16px);
+    font-size:clamp(1rem,1.6vw,1.15rem); color:var(--text-muted); max-width:52ch; margin:0 0 2rem;
+    opacity:0; transform:translateY(14px);
     animation:riseIn .7s var(--ease) .2s forwards;
   }
   .hero .btn-primary{
-    opacity:0; transform:translateY(16px);
+    opacity:0; transform:translateY(14px);
     animation:riseIn .7s var(--ease) .35s forwards;
   }
   .btn-primary{
-    display:inline-flex; align-items:center; gap:0.6rem;
-    background:var(--jade-main); color:var(--bg-deep); font-weight:800; font-size:1rem;
-    padding:0.95rem 1.8rem; border-radius:100px;
-    box-shadow:0 0 25px var(--jade-glow), 0 8px 20px -6px rgba(16,185,129,0.5);
-    transition:all .25s var(--ease);
-    border: 1px solid rgba(255,255,255,0.3);
+    display:inline-flex; align-items:center; gap:0.5rem;
+    background:var(--jade-bright); color:var(--bg-deep); font-weight:700; font-size:0.98rem;
+    padding:0.85rem 1.6rem; border-radius:100px;
+    box-shadow:0 8px 24px -8px rgba(16,185,129,0.5);
+    transition:transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease);
   }
-  .btn-primary:hover{ 
-    transform:translateY(-3px) scale(1.02); 
-    background:#12d394; 
-    box-shadow:0 0 35px rgba(16,185,129,0.6), 0 12px 24px -6px rgba(16,185,129,0.7); 
-  }
-  .btn-primary:active{ transform:translateY(0) scale(0.98); }
+  .btn-primary:hover{ transform:translateY(-2px); background: #14b8a6; box-shadow:0 12px 28px -8px rgba(20,184,166,0.6); }
+  .btn-primary:active{ transform:translateY(0) scale(0.97); }
 
-  /* ---------- How it works ---------- */
-  .how{ 
-    border-top:1px solid var(--border-subtle); 
-    border-bottom:1px solid var(--border-subtle); 
-    background:linear-gradient(180deg, rgba(16,185,129,0.02) 0%, rgba(5,9,14,0.4) 100%); 
-    position:relative;
-  }
-  .steps{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:2rem; }
-  .steps li{ 
-    position:relative; padding:1.8rem; 
-    background:var(--bg-panel); border:1px solid var(--border-subtle); 
-    border-radius:var(--radius-lg);
-    transition: transform 0.3s var(--ease), border-color 0.3s var(--ease);
-  }
-  .steps li:hover{
-    transform: translateY(-4px);
-    border-color: var(--border-glow);
-  }
+ 
+  .how{ border-top:1px solid var(--border-subtle); border-bottom:1px solid var(--border-subtle); background:rgba(16,185,129,0.005); }
+  .steps{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2rem; }
+  .steps li{ position:relative; padding-inline-start:0; }
   .step-num{
     display:flex; align-items:center; justify-content:center;
-    width:3rem; height:3rem; border-radius:14px;
-    background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3);
-    font-family:var(--font-brand); font-weight:800; font-size:1.1rem; color:var(--jade-main);
-    margin-bottom:1.2rem;
-    box-shadow: 0 0 15px rgba(16,185,129,0.15);
+    width:2.6rem; height:2.6rem; border-radius:50%;
+    background:var(--bg-panel); border:1px solid var(--border-subtle);
+    font-family:var(--font-brand); font-weight:700; color:var(--jade-bright);
+    margin-bottom:1rem;
+    box-shadow: inset 0 0 10px rgba(16,185,129,0.05);
   }
-  .steps h3{ font-family:var(--font-body); font-weight:700; font-size:1.15rem; margin:0 0 0.5rem; color:var(--text-primary); }
-  .steps p{ color:var(--text-muted); font-size:0.95rem; margin:0; line-height:1.6; }
+  .steps h3{ font-family:var(--font-body); font-weight:700; font-size:1.05rem; margin:0 0 0.4rem; }
+  .steps p{ color:var(--text-muted); font-size:0.94rem; margin:0; }
 
-  /* ---------- Games grid ---------- */
+  
   .games-grid{
-    display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.8rem;
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.5rem;
   }
   .game-card{
     background:var(--bg-panel); border:1px solid var(--border-subtle); border-radius:var(--radius-lg);
     overflow:hidden; display:flex; flex-direction:column;
-    opacity:0; transform:translateY(20px);
-    transition:opacity .6s var(--ease), transform .6s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
+    opacity:0; transform:translateY(18px);
+    transition:opacity .6s var(--ease), transform .6s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
     transition-delay:var(--delay,0ms);
-    position:relative;
   }
   .game-card.in-view{ opacity:1; transform:translateY(0); }
   .game-card:not(.skeleton):hover{
-    border-color:var(--border-glow);
-    box-shadow:0 20px 40px -15px rgba(0,0,0,0.7), 0 0 30px var(--jade-glow);
-    transform:translateY(-6px);
+    border-color:rgba(16,185,129,0.3);
+    box-shadow:0 16px 40px -20px rgba(16,185,129,0.25);
   }
-  .card-media{ position:relative; aspect-ratio:3/4; overflow:hidden; background:var(--bg-deep); }
-  .card-media img{ width:100%; height:100%; object-fit:cover; transition:transform .6s var(--ease); }
-  .game-card:hover .card-media img{ transform:scale(1.08); }
+  .card-media{ position:relative; aspect-ratio:3/4; overflow:hidden; background:var(--bg-panel-light); }
+  .card-media img{ width:100%; height:100%; object-fit:cover; transition:transform .5s var(--ease); }
+  .game-card:hover .card-media img{ transform:scale(1.05); }
   .ribbon{
-    position:absolute; top:1rem; right:1rem; z-index:2;
-    background:rgba(5, 46, 32, 0.85); color:var(--jade-soft); font-weight:700; font-size:0.75rem;
-    padding:0.35rem 0.8rem; border-radius:100px;
-    border: 1px solid var(--jade-main);
-    backdrop-filter: blur(8px);
-    box-shadow:0 4px 12px rgba(0,0,0,0.4);
+    position:absolute; top:0.8rem; right:0.8rem;
+    background:var(--jade-dark); color:var(--jade-soft); font-weight:700; font-size:0.72rem;
+    padding:0.3rem 0.65rem; border-radius:100px;
+    border: 1px solid rgba(16,185,129,0.2);
   }
-  .card-body{ padding:1.3rem 1.3rem 1.4rem; display:flex; flex-direction:column; gap:0.7rem; flex:1; background:linear-gradient(180deg, transparent 0%, rgba(5,9,14,0.6) 100%); }
-  .card-title{ font-family:var(--font-display); font-weight:400; font-size:1.4rem; margin:0; line-height:1.25; letter-spacing:0.01em; }
+  .card-body{ padding:1.1rem 1.15rem 1.3rem; display:flex; flex-direction:column; gap:0.6rem; flex:1; }
+  .card-title{ font-family:var(--font-display); font-weight:400; font-size:1.3rem; margin:0; line-height:1.3; }
   .card-desc{
     color:var(--text-muted); font-size:0.9rem; margin:0; flex:1;
     display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
-    line-height:1.6;
   }
-  .card-meta{ display:flex; align-items:center; gap:0.4rem; font-size:0.85rem; font-weight:600; color:var(--jade-soft); }
+  .card-meta{ display:flex; align-items:center; gap:0.4rem; font-size:0.82rem; color:var(--text-muted); }
   .btn-download{
-    display:flex; align-items:center; justify-content:center; gap:0.6rem;
-    background:var(--jade-main); color:var(--bg-deep); font-weight:800; font-size:0.95rem;
-    padding:0.8rem 1rem; border-radius:var(--radius-md); margin-top:0.4rem;
-    border:none;
-    box-shadow:0 4px 15px rgba(16,185,129,0.3);
-    transition:all .2s var(--ease);
+    display:flex; align-items:center; justify-content:center; gap:0.5rem;
+    background:var(--jade-bright); color:var(--bg-deep); font-weight:700; font-size:0.95rem;
+    padding:0.75rem 1rem; border-radius:var(--radius-md); margin-top:0.3rem;
+    border:1px solid rgba(10,17,24,0.15);
+    box-shadow:0 4px 0 0 rgba(10,17,24,0.35);
+    transition:transform .12s var(--ease), box-shadow .12s var(--ease), background .2s var(--ease);
   }
-  .btn-download:hover{ background:var(--jade-soft); box-shadow:0 6px 20px rgba(16,185,129,0.5); transform:translateY(-1px); }
-  .btn-download:active{ transform:translateY(1px); }
-  .icon-download{ width:18px; height:18px; stroke-width:2.5; }
+  .btn-download:hover{ background:var(--jade-soft); }
+  .btn-download:active{ transform:translateY(3px); box-shadow:0 1px 0 0 rgba(10,17,24,0.35); }
+  .icon-download{ width:18px; height:18px; }
 
-  /* ---------- Skeleton ---------- */
-  .game-card.skeleton .card-media{ background:linear-gradient(100deg,var(--bg-panel) 30%, rgba(16,185,129,0.05) 50%, var(--bg-panel) 70%); background-size:200% 100%; animation:shimmer 1.6s infinite linear; }
-  .skeleton-line{ height:0.9rem; border-radius:6px; margin-bottom:0.7rem; background:linear-gradient(100deg,var(--bg-panel) 30%, rgba(16,185,129,0.05) 50%, var(--bg-panel) 70%); background-size:200% 100%; animation:shimmer 1.6s infinite linear; }
+ 
+  .game-card.skeleton .card-media{ background:linear-gradient(100deg,var(--bg-panel-light) 30%, rgba(255,255,255,0.03) 50%, var(--bg-panel-light) 70%); background-size:200% 100%; animation:shimmer 1.6s infinite linear; }
+  .skeleton-line{ height:0.85rem; border-radius:6px; margin-bottom:0.6rem; background:linear-gradient(100deg,var(--bg-panel-light) 30%, rgba(255,255,255,0.03) 50%, var(--bg-panel-light) 70%); background-size:200% 100%; animation:shimmer 1.6s infinite linear; }
   .skeleton .w-70{ width:70%; } .skeleton .w-100{ width:100%; } .skeleton .w-40{ width:40%; }
 
-  /* ---------- Empty / error states ---------- */
+ 
   .state-message{
-    grid-column:1/-1; text-align:center; padding:4rem 1.5rem;
-    border:1px dashed var(--border-glow); border-radius:var(--radius-lg);
-    background:rgba(11,19,27,0.5);
+    grid-column:1/-1; text-align:center; padding:3.5rem 1rem;
+    border:1px dashed var(--border-subtle); border-radius:var(--radius-lg);
   }
-  .state-title{ font-family:var(--font-display); font-size:1.6rem; margin:0 0 0.5rem; color:var(--text-primary); }
-  .state-sub{ color:var(--text-muted); margin:0 0 1.5rem; }
+  .state-title{ font-family:var(--font-display); font-size:1.4rem; margin:0 0 0.5rem; }
+  .state-sub{ color:var(--text-muted); margin:0 0 1.2rem; }
   .btn-retry{
-    background:transparent; border:1px solid var(--jade-main); color:var(--jade-main);
-    font-family:var(--font-body); font-weight:700; padding:0.7rem 1.6rem; border-radius:100px;
-    cursor:pointer; transition:all .2s var(--ease);
+    background:transparent; border:1px solid var(--jade-bright); color:var(--jade-bright);
+    font-family:var(--font-body); font-weight:600; padding:0.6rem 1.4rem; border-radius:100px;
+    cursor:pointer; transition:background .2s var(--ease), color .2s var(--ease);
   }
-  .btn-retry:hover{ background:var(--jade-main); color:var(--bg-deep); box-shadow:0 0 20px var(--jade-glow); }
+  .btn-retry:hover{ background:var(--jade-bright); color:var(--bg-deep); }
 
-  /* ---------- Footer ---------- */
-  .site-footer{ border-top:1px solid var(--border-subtle); padding-block:3rem; background:rgba(5,9,14,0.9); }
-  .footer-inner{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.5rem; }
-  .footer-inner p{ color:var(--text-muted); font-size:0.9rem; margin:0.4rem 0 0; }
-  .footer-inner > a{ color:var(--text-muted); font-size:0.95rem; font-weight:600; transition:color .2s var(--ease); }
-  .footer-inner > a:hover{ color:var(--jade-main); text-shadow:0 0 8px var(--jade-glow); }
+
+  .site-footer{ border-top:1px solid var(--border-subtle); padding-block:2.5rem; }
+  .footer-inner{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; }
+  .footer-inner p{ color:var(--text-muted); font-size:0.88rem; margin:0.3rem 0 0; }
+  .footer-inner > a{ color:var(--text-muted); font-size:0.9rem; transition:color .2s var(--ease); }
+  .footer-inner > a:hover{ color:var(--jade-bright); }
 
   @keyframes riseIn{ to{ opacity:1; transform:translateY(0); } }
   @keyframes shimmer{ to{ background-position:-200% 0; } }
@@ -689,42 +216,36 @@
 <body>
 
 <div class="bg-ambient" aria-hidden="true"></div>
-<div class="bg-grid" aria-hidden="true"></div>
 
 <header class="site-header">
   <div class="container header-inner">
     <a class="logo" href="#top" aria-label="Farsi-Origin">
-      <div class="logo-mark-wrap">
-        <!-- کاراکتر اختصاصی Origin: ماسک سایبرپانک / روباتیک گیمینگ با هدست و چشمی‌های سبز یشمی -->
-        <svg class="logo-mark" viewBox="0 0 40 40" fill="none" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" aria-hidden="true">
-          <!-- بدنه کلاهخود / ماسک Origin -->
-          <path d="M8 15C8 8.37258 13.3726 3 20 3C26.6274 3 32 8.37258 32 15V24C32 28.9706 27.9706 33 23 33H17C12.0294 33 8 28.9706 8 24V15Z" fill="#06121A" stroke="#10B981" stroke-width="1.5"/>
-          <!-- آرمور زوایای پایینی چانه -->
-          <path d="M14 28L20 35L26 28H14Z" fill="#052E20" stroke="#10B981" stroke-width="1.5"/>
-          <!-- چشمی سمت چپ (Origin Eye L) -->
-          <path d="M11 16C11 14.3431 12.3431 13 14 13H17C17.5523 13 18 13.4477 18 14V17C18 18.1046 17.1046 19 16 19H14C12.3431 19 11 17.6569 11 16Z" fill="#10B981"/>
-          <!-- چشمی سمت راست (Origin Eye R) -->
-          <path d="M29 16C29 14.3431 27.6569 13 26 13H23C22.4477 13 22 13.4477 22 14V17C22 18.1046 22.8954 19 24 19H26C27.6569 19 29 17.6569 29 16Z" fill="#10B981"/>
-          <!-- هاله نوری درون چشم‌ها -->
-          <circle cx="14.5" cy="15.5" r="1.5" fill="#FFFFFF"/>
-          <circle cx="25.5" cy="15.5" r="1.5" fill="#FFFFFF"/>
-          <!-- گوش و هدست گیمینگ تاکتیکال چپ -->
-          <rect x="3" y="14" width="5" height="11" rx="2.5" fill="#0B4F36" stroke="#10B981" stroke-width="1.5"/>
-          <!-- گوش و هدست گیمینگ تاکتیکال راست -->
-          <rect x="32" y="14" width="5" height="11" rx="2.5" fill="#0B4F36" stroke="#10B981" stroke-width="1.5"/>
-          <!-- قوس بالای هدست -->
-          <path d="M8 13C8 8 13 4 20 4C27 4 32 8 32 13" stroke="#10B981" stroke-width="2" stroke-dasharray="2 2"/>
-          <!-- شیارهای تنفسی تهویه روی دهان -->
-          <line x1="17" y1="23" x2="23" y2="23" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
-          <line x1="18" y1="26" x2="22" y2="26" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </div>
+   
+      <svg class="logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+        <path d="M7 14C7 8.47715 11.4772 4 17 4H19C24.5228 4 29 8.47715 29 14V22C29 26.4183 25.4183 30 21 30H15C10.5817 30 7 26.4183 7 22V14Z" fill="#0B4F36"/>
+     
+        <path d="M12 25L18 31L24 25H12Z" fill="#052E20"/>
+       
+        <path d="M10 15C10 13.8954 11.1193 13 12.5 13H14.5C15.8807 13 17 13.8954 17 15V16.5C17 17.0523 15.8807 17.5 14.5 17.5H12.5C11.1193 17.5 10 17.0523 10 16.5V15Z" fill="#10B981"/>
+    
+        <path d="M19 15C19 13.8954 20.1193 13 21.5 13H23.5C24.8807 13 26 13.8954 26 15V16.5C26 17.0523 24.8807 17.5 23.5 17.5H21.5C20.1193 17.5 19 17.0523 19 16.5V15Z" fill="#10B981"/>
+ 
+        <rect x="3" y="13" width="4" height="10" rx="2" fill="#10B981"/>
+       
+        <rect x="29" y="13" width="4" height="10" rx="2" fill="#10B981"/>
+       
+        <path d="M7 13C7 9 10 6 14 5H22C26 6 29 9 29 13" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+    
+        <line x1="15" y1="22" x2="21" y2="22" stroke="#052E20" stroke-width="2" stroke-linecap="round"/>
+        <line x1="16" y1="25" x2="20" y2="25" stroke="#052E20" stroke-width="2" stroke-linecap="round"/>
+      </svg>
       <span class="logo-text">Farsi<span class="logo-accent">-Origin</span></span>
     </a>
     <nav class="nav">
       <a href="#games">بازی‌ها</a>
       <a href="#how">فرایند</a>
-      <a href="[https://github.com/Origin-Core/Farsi-Origin-](https://github.com/Origin-Core/Farsi-Origin-)" target="_blank" rel="noopener">گیت‌هاب</a>
+      <a href="https://github.com/Origin-Core/Farsi-Origin-" target="_blank" rel="noopener">گیت‌هاب</a>
     </nav>
   </div>
 </header>
@@ -732,7 +253,7 @@
 <main>
   <section class="hero" id="top">
     <div class="container hero-inner">
-      <p class="eyebrow">مرجع فارسی‌سازی بازی‌های ویدیویی</p>
+      <p class="eyebrow">فارسی‌سازی بازی‌های ویدیویی</p>
       <h1 class="hero-title">بازی کن، به زبون خودت.</h1>
       <p class="hero-sub">هر فارسی‌سازی این‌جا یه فایل آماده‌ست؛ دانلودش کن، رو بازیت نصب کن و این‌بار کل داستان رو به فارسی تجربه کن.</p>
       <a class="btn-primary" href="#games">دیدن فارسی‌سازی‌ها ↓</a>
@@ -741,23 +262,23 @@
 
   <section class="how" id="how">
     <div class="container">
-      <p class="eyebrow">فرایند هوشمند Origin</p>
+      <p class="eyebrow">فرایند</p>
       <h2>از ترجمه تا دانلود</h2>
       <ol class="steps">
         <li>
-          <span class="step-num">۰۱</span>
+          <span class="step-num">۱</span>
           <h3>ترجمه و تست</h3>
           <p>متن‌های بازی ترجمه می‌شن و روی نسخه‌ی اصلی تست می‌شن تا چیزی خراب نشه.</p>
         </li>
         <li>
-          <span class="step-num">۰۲</span>
+          <span class="step-num">۲</span>
           <h3>انتشار در مخزن</h3>
-          <p>عکس بازی و فایل فارسی‌سازی، با یک اسم مشترک، در ریشه‌ی همین مخزن گیت‌هاب قرار می‌گیرن.</p>
+          <p>بازی در همین سایت و در مخزن گت هاب قرار میگیرد برای شما عزیزان.</p>
         </li>
         <li>
-          <span class="step-num">۰۳</span>
-          <h3>دانلود مستقیم</h3>
-          <p>همون لحظه، بازی به‌صورت یه محصول کامل این‌جا ظاهر می‌شه؛ آماده برای دانلود.</p>
+          <span class="step-num">۳</span>
+          <h3>کانال تلگرام</h3>
+          <p>لیست فارسی ساز ها درتلگرام:@farsi_origin </p>
         </li>
       </ol>
     </div>
@@ -776,9 +297,9 @@
   <div class="container footer-inner">
     <div>
       <span class="logo-text">Farsi<span class="logo-accent">-Origin</span></span>
-      <p>یک پروژه‌ی متن‌باز برای فارسی‌سازی بازی‌های ویدیویی.</p>
+      <p>کانال تلگراممون : @Farsi_origin</p>
     </div>
-    <a href="[https://github.com/Origin-Core/Farsi-Origin-](https://github.com/Origin-Core/Farsi-Origin-)" target="_blank" rel="noopener">مخزن گیت‌هاب ↗</a>
+    <a href="https://github.com/Origin-Core/Farsi-Origin-" target="_blank" rel="noopener">مخزن گیت‌هاب ↗</a>
   </div>
 </footer>
 
@@ -788,7 +309,7 @@
 
   const GH_OWNER = "Origin-Core";
   const GH_REPO  = "Farsi-Origin-";
-  const API_URL  = `[https://api.github.com/repos/$](https://api.github.com/repos/$){GH_OWNER}/${GH_REPO}/contents/`;
+  const API_URL  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/`;
 
   const IMAGE_EXTS   = ["png","jpg","jpeg","webp","gif"];
   const ARCHIVE_EXTS = ["zip","rar","7z"];
@@ -874,10 +395,10 @@
         <div class="card-body">
           <h3 class="card-title">${escapeHtml(p.displayName)}</h3>
           <p class="card-desc" id="desc-${i}">توضیحی برای این فارسی‌سازی ثبت نشده.</p>
-          <div class="card-meta"><span>حجم: ${sizeStr}</span></div>
+          <div class="card-meta"><span>${sizeStr}</span></div>
           <a class="btn-download" href="${p.archive.download_url}" download="${escapeHtml(p.archive.name)}">
-            <svg class="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 21h16" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>دانلود مستقیم</span>
+            <svg class="icon-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 21h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>دانلود فایل</span>
           </a>
         </div>
       </article>`;
