@@ -14,16 +14,15 @@
 
 <style>
   :root{
-   
     --bg-deep:#0A1118;            
-    --bg-panel:#111C26;           
+    --bg-panel:#111C26;            
     --bg-panel-light:#1A2936;    
     --jade-dark:#0B4F36;        
-    --jade-bright:#10B981;     
+    --jade-bright:#10B981;      
     --jade-soft:#A7F3D0;        
     --teal:#34D399;              
-    --text-primary:#F1F5F9;     
-    --text-muted:#94A3B8;       
+    --text-primary:#F1F5F9;      
+    --text-muted:#94A3B8;        
     --border-subtle:rgba(52,211,153,0.08);
     --font-display:'Lalezar', sans-serif;
     --font-body:'Noto Sans Arabic', sans-serif;
@@ -58,7 +57,6 @@
       var(--bg-deep);
   }
 
- 
   .site-header{
     position:sticky; top:0; z-index:40;
     background:rgba(10,17,24,0.75);
@@ -68,7 +66,6 @@
   .header-inner{ display:flex; align-items:center; justify-content:space-between; padding-block:0.9rem; }
   .logo{ display:flex; align-items:center; gap:0.65rem; }
   
- 
   .logo-mark{ width:36px; height:36px; flex:none; transition: transform 0.3s var(--ease); }
   .logo:hover .logo-mark { transform: scale(1.08) rotate(-4deg); }
   
@@ -78,7 +75,6 @@
   .nav a{ transition:color .2s var(--ease); }
   .nav a:hover, .nav a:focus-visible{ color:var(--text-primary); }
 
- 
   section{ padding-block:clamp(3rem,8vw,5.5rem); }
   .eyebrow{
     font-family:var(--font-brand); font-weight:600; font-size:0.8rem;
@@ -87,7 +83,6 @@
   }
   h2{ font-family:var(--font-display); font-weight:400; font-size:clamp(1.8rem,3.2vw,2.5rem); margin:0 0 2.5rem; }
 
- 
   .hero{ padding-block:clamp(4rem,12vw,7rem) clamp(3rem,8vw,5rem); position:relative; overflow:hidden; }
   .hero-inner{ max-width:760px; }
   .hero-title{
@@ -109,16 +104,15 @@
     animation:riseIn .7s var(--ease) .35s forwards;
   }
   .btn-primary{
-    display:inline-flex; align-items:center; gap:0.5rem;
+    display:inline-flex; align-items:center; gap:0.5rem; justify-content:center;
     background:var(--jade-bright); color:var(--bg-deep); font-weight:700; font-size:0.98rem;
-    padding:0.85rem 1.6rem; border-radius:100px;
+    padding:0.85rem 1.6rem; border-radius:100px; border:none; cursor:pointer;
     box-shadow:0 8px 24px -8px rgba(16,185,129,0.5);
     transition:transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease);
   }
   .btn-primary:hover{ transform:translateY(-2px); background: #14b8a6; box-shadow:0 12px 28px -8px rgba(20,184,166,0.6); }
   .btn-primary:active{ transform:translateY(0) scale(0.97); }
 
- 
   .how{ border-top:1px solid var(--border-subtle); border-bottom:1px solid var(--border-subtle); background:rgba(16,185,129,0.005); }
   .steps{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2rem; }
   .steps li{ position:relative; padding-inline-start:0; }
@@ -133,7 +127,6 @@
   .steps h3{ font-family:var(--font-body); font-weight:700; font-size:1.05rem; margin:0 0 0.4rem; }
   .steps p{ color:var(--text-muted); font-size:0.94rem; margin:0; }
 
-  
   .games-grid{
     display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1.5rem;
   }
@@ -169,7 +162,7 @@
     display:flex; align-items:center; justify-content:center; gap:0.5rem;
     background:var(--jade-bright); color:var(--bg-deep); font-weight:700; font-size:0.95rem;
     padding:0.75rem 1rem; border-radius:var(--radius-md); margin-top:0.3rem;
-    border:1px solid rgba(10,17,24,0.15);
+    border:1px solid rgba(10,17,24,0.15); cursor:pointer;
     box-shadow:0 4px 0 0 rgba(10,17,24,0.35);
     transition:transform .12s var(--ease), box-shadow .12s var(--ease), background .2s var(--ease);
   }
@@ -177,12 +170,10 @@
   .btn-download:active{ transform:translateY(3px); box-shadow:0 1px 0 0 rgba(10,17,24,0.35); }
   .icon-download{ width:18px; height:18px; }
 
- 
   .game-card.skeleton .card-media{ background:linear-gradient(100deg,var(--bg-panel-light) 30%, rgba(255,255,255,0.03) 50%, var(--bg-panel-light) 70%); background-size:200% 100%; animation:shimmer 1.6s infinite linear; }
   .skeleton-line{ height:0.85rem; border-radius:6px; margin-bottom:0.6rem; background:linear-gradient(100deg,var(--bg-panel-light) 30%, rgba(255,255,255,0.03) 50%, var(--bg-panel-light) 70%); background-size:200% 100%; animation:shimmer 1.6s infinite linear; }
   .skeleton .w-70{ width:70%; } .skeleton .w-100{ width:100%; } .skeleton .w-40{ width:40%; }
 
- 
   .state-message{
     grid-column:1/-1; text-align:center; padding:3.5rem 1rem;
     border:1px dashed var(--border-subtle); border-radius:var(--radius-lg);
@@ -196,12 +187,42 @@
   }
   .btn-retry:hover{ background:var(--jade-bright); color:var(--bg-deep); }
 
-
   .site-footer{ border-top:1px solid var(--border-subtle); padding-block:2.5rem; }
   .footer-inner{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; }
   .footer-inner p{ color:var(--text-muted); font-size:0.88rem; margin:0.3rem 0 0; }
   .footer-inner > a{ color:var(--text-muted); font-size:0.9rem; transition:color .2s var(--ease); }
   .footer-inner > a:hover{ color:var(--jade-bright); }
+
+  /* --- Styles for Auth UI & Modals --- */
+  .auth-buttons { display: flex; gap: 0.75rem; align-items: center; border-right: 1px solid var(--border-subtle); padding-right: 1rem; }
+  .btn-outline {
+    background: transparent; border: 1px solid var(--jade-bright); color: var(--jade-bright);
+    padding: 0.4rem 1.2rem; border-radius: 100px; font-weight: 600; font-size: 0.9rem; transition: all 0.2s var(--ease); cursor:pointer;
+  }
+  .btn-outline:hover { background: rgba(16,185,129,0.1); }
+  .user-email { font-size: 0.85rem; color: var(--jade-soft); font-family: var(--font-brand); }
+  
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(10, 17, 24, 0.85); backdrop-filter: blur(8px);
+    z-index: 100; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s var(--ease);
+  }
+  .modal-overlay.active { opacity: 1; pointer-events: auto; }
+  .modal-content {
+    background: var(--bg-panel); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: var(--radius-lg);
+    padding: 2.5rem 2rem; max-width: 420px; width: 90%; text-align: center; position: relative;
+    transform: translateY(20px) scale(0.95); transition: transform 0.3s var(--ease);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 30px rgba(16, 185, 129, 0.1);
+  }
+  .modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
+  .modal-title { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-primary); }
+  .modal-text { color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem; }
+  .modal-icon { width: 64px; height: 64px; margin: 0 auto 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--jade-bright); }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--text-muted);
+    cursor: pointer; font-size: 1.5rem; transition: color 0.2s;
+  }
+  .modal-close:hover { color: #ef4444; }
 
   @keyframes riseIn{ to{ opacity:1; transform:translateY(0); } }
   @keyframes shimmer{ to{ background-position:-200% 0; } }
@@ -211,6 +232,7 @@
     .hero-title,.hero-sub,.hero .btn-primary,.game-card{ animation:none !important; opacity:1 !important; transform:none !important; transition:none !important; }
     .game-card:not(.skeleton):hover .card-media img{ transform:none; }
   }
+  @media (max-width: 600px) { .auth-buttons { border-right: none; padding-right: 0; } }
 </style>
 </head>
 <body>
@@ -220,23 +242,14 @@
 <header class="site-header">
   <div class="container header-inner">
     <a class="logo" href="#top" aria-label="Farsi-Origin">
-   
       <svg class="logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-
         <path d="M7 14C7 8.47715 11.4772 4 17 4H19C24.5228 4 29 8.47715 29 14V22C29 26.4183 25.4183 30 21 30H15C10.5817 30 7 26.4183 7 22V14Z" fill="#0B4F36"/>
-     
         <path d="M12 25L18 31L24 25H12Z" fill="#052E20"/>
-       
         <path d="M10 15C10 13.8954 11.1193 13 12.5 13H14.5C15.8807 13 17 13.8954 17 15V16.5C17 17.0523 15.8807 17.5 14.5 17.5H12.5C11.1193 17.5 10 17.0523 10 16.5V15Z" fill="#10B981"/>
-    
         <path d="M19 15C19 13.8954 20.1193 13 21.5 13H23.5C24.8807 13 26 13.8954 26 15V16.5C26 17.0523 24.8807 17.5 23.5 17.5H21.5C20.1193 17.5 19 17.0523 19 16.5V15Z" fill="#10B981"/>
- 
         <rect x="3" y="13" width="4" height="10" rx="2" fill="#10B981"/>
-       
         <rect x="29" y="13" width="4" height="10" rx="2" fill="#10B981"/>
-       
         <path d="M7 13C7 9 10 6 14 5H22C26 6 29 9 29 13" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
-    
         <line x1="15" y1="22" x2="21" y2="22" stroke="#052E20" stroke-width="2" stroke-linecap="round"/>
         <line x1="16" y1="25" x2="20" y2="25" stroke="#052E20" stroke-width="2" stroke-linecap="round"/>
       </svg>
@@ -246,9 +259,27 @@
       <a href="#games">بازی‌ها</a>
       <a href="#how">فرایند</a>
       <a href="https://github.com/Origin-Core/Farsi-Origin-" target="_blank" rel="noopener">گیت‌هاب</a>
+      <!-- وضعیت کاربر و دکمه‌های ورود/ثبت نام اینجا تزریق می‌شود -->
+      <div id="auth-ui" class="auth-buttons">
+        <span style="font-size:0.8rem; color:var(--text-muted)">در حال بررسی...</span>
+      </div>
     </nav>
   </div>
 </header>
+
+<!-- مدال پیام خطای لاگین برای دانلود -->
+<div class="modal-overlay" id="login-modal">
+  <div class="modal-content">
+    <button class="modal-close" id="close-modal">&times;</button>
+    <div class="modal-icon">
+      <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    </div>
+    <h3 class="modal-title">دسترسی محدود</h3>
+    <p class="modal-text">برای دانلود فایل‌های فارسی‌ساز، لطفاً ابتدا وارد حساب کاربری خود شوید یا ثبت‌نام کنید.</p>
+    <a href="login.html" class="btn-primary" style="width:100%; margin-bottom: 0.5rem;">ورود به حساب</a>
+    <a href="register.html" class="btn-outline" style="display:block; width:100%; text-align:center; box-sizing:border-box;">ثبت نام سریع</a>
+  </div>
+</div>
 
 <main>
   <section class="hero" id="top">
@@ -256,7 +287,7 @@
       <p class="eyebrow">فارسی‌سازی بازی‌های ویدیویی</p>
       <h1 class="hero-title">بازی کن، به زبون خودت.</h1>
       <p class="hero-sub">هر فارسی‌سازی این‌جا یه فایل آماده‌ست؛ دانلودش کن، رو بازیت نصب کن و این‌بار کل داستان رو به فارسی تجربه کن.</p>
-      <a class="btn-primary" href="#games">دیدن فارسی‌سازی‌ها ↓</a>
+      <a class="btn-primary" href="#games" style="display:inline-flex;">دیدن فارسی‌سازی‌ها ↓</a>
     </div>
   </section>
 
@@ -303,156 +334,211 @@
   </div>
 </footer>
 
-<script>
-(function(){
-  "use strict";
+<!-- تغییر اسکریپت به type="module" جهت اجرای امن Supabase بدون سرور -->
+<script type="module">
+import { supabase } from './supabase-config.js';
 
-  const GH_OWNER = "Origin-Core";
-  const GH_REPO  = "Farsi-Origin-";
-  const API_URL  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/`;
+let currentUser = null;
 
-  const IMAGE_EXTS   = ["png","jpg","jpeg","webp","gif"];
-  const ARCHIVE_EXTS = ["zip","rar","7z"];
-  const DESC_EXTS    = ["txt","md"];
+const GH_OWNER = "Origin-Core";
+const GH_REPO  = "Farsi-Origin-";
+const API_URL  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/`;
 
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const grid = document.getElementById("games-grid");
+const IMAGE_EXTS   = ["png","jpg","jpeg","webp","gif"];
+const ARCHIVE_EXTS = ["zip","rar","7z"];
+const DESC_EXTS    = ["txt","md"];
 
-  function escapeHtml(str){
-    return String(str).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const grid = document.getElementById("games-grid");
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function humanizeName(base){
+  let s = base.replace(/[-_]+/g, " ").trim();
+  s = s.replace(/\b([a-zA-Z])/g, m => m.toUpperCase());
+  return s;
+}
+
+function formatSize(bytes){
+  const units = ["بایت","کیلوبایت","مگابایت","گیگابایت"];
+  let n = bytes, i = 0;
+  while(n >= 1024 && i < units.length - 1){ n /= 1024; i++; }
+  const val = i === 0 ? n : Math.round(n * 10) / 10;
+  return `${val.toLocaleString("fa-IR")} ${units[i]}`;
+}
+
+function groupFiles(files){
+  const map = {};
+  for(const f of files){
+    if(f.type !== "file") continue;
+    const dot = f.name.lastIndexOf(".");
+    if(dot <= 0) continue;
+    const base = f.name.slice(0, dot);
+    const ext  = f.name.slice(dot + 1).toLowerCase();
+    const key  = base.toLowerCase();
+    if(!map[key]) map[key] = { displayName: humanizeName(base), image:null, archive:null, desc:null };
+    if(IMAGE_EXTS.includes(ext)) map[key].image = f;
+    else if(ARCHIVE_EXTS.includes(ext)) map[key].archive = f;
+    else if(DESC_EXTS.includes(ext)) map[key].desc = f;
   }
+  return map;
+}
 
-  function humanizeName(base){
-    let s = base.replace(/[-_]+/g, " ").trim();
-    s = s.replace(/\b([a-zA-Z])/g, m => m.toUpperCase());
-    return s;
-  }
+function renderSkeleton(){
+  grid.innerHTML = Array.from({length:4}).map(() => `
+    <div class="game-card skeleton" aria-hidden="true">
+      <div class="card-media"></div>
+      <div class="card-body">
+        <div class="skeleton-line w-70"></div>
+        <div class="skeleton-line w-100"></div>
+        <div class="skeleton-line w-40"></div>
+      </div>
+    </div>`).join("");
+}
 
-  function formatSize(bytes){
-    const units = ["بایت","کیلوبایت","مگابایت","گیگابایت"];
-    let n = bytes, i = 0;
-    while(n >= 1024 && i < units.length - 1){ n /= 1024; i++; }
-    const val = i === 0 ? n : Math.round(n * 10) / 10;
-    return `${val.toLocaleString("fa-IR")} ${units[i]}`;
-  }
+function renderEmpty(){
+  grid.innerHTML = `
+    <div class="state-message">
+      <p class="state-title">هنوز فارسی‌سازی‌ای منتشر نشده</p>
+      <p class="state-sub">به‌زودی اولین بازی این‌جا قرار می‌گیره. سری بعد که اومدی، لیست پره.</p>
+    </div>`;
+}
 
-  function groupFiles(files){
-    const map = {};
-    for(const f of files){
-      if(f.type !== "file") continue;
-      const dot = f.name.lastIndexOf(".");
-      if(dot <= 0) continue;
-      const base = f.name.slice(0, dot);
-      const ext  = f.name.slice(dot + 1).toLowerCase();
-      const key  = base.toLowerCase();
-      if(!map[key]) map[key] = { displayName: humanizeName(base), image:null, archive:null, desc:null };
-      if(IMAGE_EXTS.includes(ext)) map[key].image = f;
-      else if(ARCHIVE_EXTS.includes(ext)) map[key].archive = f;
-      else if(DESC_EXTS.includes(ext)) map[key].desc = f;
-    }
-    return map;
-  }
+function renderError(){
+  grid.innerHTML = `
+    <div class="state-message">
+      <p class="state-title">دریافت لیست فارسی‌سازی‌ها ممکن نشد</p>
+      <p class="state-sub">اتصال به گیت‌هاب با مشکل مواجه شد. چند لحظه دیگه دوباره امتحان کن.</p>
+      <button class="btn-retry" id="retry-btn" type="button">تلاش دوباره</button>
+    </div>`;
+  const btn = document.getElementById("retry-btn");
+  if(btn) btn.addEventListener("click", loadGames);
+}
 
-  function renderSkeleton(){
-    grid.innerHTML = Array.from({length:4}).map(() => `
-      <div class="game-card skeleton" aria-hidden="true">
-        <div class="card-media"></div>
-        <div class="card-body">
-          <div class="skeleton-line w-70"></div>
-          <div class="skeleton-line w-100"></div>
-          <div class="skeleton-line w-40"></div>
-        </div>
-      </div>`).join("");
-  }
+function cardHTML(p, i){
+  const sizeStr = formatSize(p.archive.size);
+  // توجه: دکمه دانلود به‌صورت پیش‌فرض لینک را دارد، ما با جاوااسکریپت کلیک آن را کنترل می‌کنیم
+  return `
+    <article class="game-card" style="--delay:${i * 60}ms">
+      <div class="card-media">
+        <img src="${p.image.download_url}" alt="جلد فارسی‌سازی ${escapeHtml(p.displayName)}" loading="lazy" />
+        <span class="ribbon">فارسی‌سازی</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">${escapeHtml(p.displayName)}</h3>
+        <p class="card-desc" id="desc-${i}">توضیحی برای این فارسی‌سازی ثبت نشده.</p>
+        <div class="card-meta"><span>${sizeStr}</span></div>
+        <a class="btn-download" href="${p.archive.download_url}" download="${escapeHtml(p.archive.name)}">
+          <svg class="icon-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 21h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>دانلود فایل</span>
+        </a>
+      </div>
+    </article>`;
+}
 
-  function renderEmpty(){
-    grid.innerHTML = `
-      <div class="state-message">
-        <p class="state-title">هنوز فارسی‌سازی‌ای منتشر نشده</p>
-        <p class="state-sub">به‌زودی اولین بازی این‌جا قرار می‌گیره. سری بعد که اومدی، لیست پره.</p>
-      </div>`;
-  }
+function observeCards(){
+  const cards = document.querySelectorAll(".game-card:not(.skeleton)");
+  if(reduceMotion){ cards.forEach(c => c.classList.add("in-view")); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in-view"); io.unobserve(e.target); } });
+  }, { threshold:0.15 });
+  cards.forEach(c => io.observe(c));
+}
 
-  function renderError(){
-    grid.innerHTML = `
-      <div class="state-message">
-        <p class="state-title">دریافت لیست فارسی‌سازی‌ها ممکن نشد</p>
-        <p class="state-sub">اتصال به گیت‌هاب با مشکل مواجه شد. چند لحظه دیگه دوباره امتحان کن.</p>
-        <button class="btn-retry" id="retry-btn" type="button">تلاش دوباره</button>
-      </div>`;
-    const btn = document.getElementById("retry-btn");
-    if(btn) btn.addEventListener("click", loadGames);
-  }
-
-  function cardHTML(p, i){
-    const sizeStr = formatSize(p.archive.size);
-    return `
-      <article class="game-card" style="--delay:${i * 60}ms">
-        <div class="card-media">
-          <img src="${p.image.download_url}" alt="جلد فارسی‌سازی ${escapeHtml(p.displayName)}" loading="lazy" />
-          <span class="ribbon">فارسی‌سازی</span>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">${escapeHtml(p.displayName)}</h3>
-          <p class="card-desc" id="desc-${i}">توضیحی برای این فارسی‌سازی ثبت نشده.</p>
-          <div class="card-meta"><span>${sizeStr}</span></div>
-          <a class="btn-download" href="${p.archive.download_url}" download="${escapeHtml(p.archive.name)}">
-            <svg class="icon-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 21h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>دانلود فایل</span>
-          </a>
-        </div>
-      </article>`;
-  }
-
-  function observeCards(){
-    const cards = document.querySelectorAll(".game-card:not(.skeleton)");
-    if(reduceMotion){ cards.forEach(c => c.classList.add("in-view")); return; }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in-view"); io.unobserve(e.target); } });
-    }, { threshold:0.15 });
-    cards.forEach(c => io.observe(c));
-  }
-
-  async function loadDescriptions(products){
-    await Promise.all(products.map(async (p, i) => {
-      if(!p.desc) return;
-      try{
-        const res = await fetch(p.desc.download_url);
-        if(!res.ok) return;
-        let text = (await res.text()).trim();
-        if(!text) return;
-        if(text.length > 140) text = text.slice(0,140).trim() + "…";
-        const el = document.getElementById(`desc-${i}`);
-        if(el) el.textContent = text;
-      }catch(e){ /* keep default description */ }
-    }));
-  }
-
-  function renderProducts(products){
-    grid.innerHTML = products.map(cardHTML).join("");
-    observeCards();
-    loadDescriptions(products);
-  }
-
-  async function loadGames(){
-    renderSkeleton();
+async function loadDescriptions(products){
+  await Promise.all(products.map(async (p, i) => {
+    if(!p.desc) return;
     try{
-      const res = await fetch(API_URL);
-      if(!res.ok) throw new Error("api-" + res.status);
-      const files = await res.json();
-      if(!Array.isArray(files)) throw new Error("unexpected-response");
-      const groups = groupFiles(files);
-      const products = Object.values(groups).filter(g => g.image && g.archive);
-      if(products.length === 0){ renderEmpty(); return; }
-      products.sort((a,b) => a.displayName.localeCompare(b.displayName, "fa"));
-      renderProducts(products);
-    }catch(err){
-      renderError();
-    }
-  }
+      const res = await fetch(p.desc.download_url);
+      if(!res.ok) return;
+      let text = (await res.text()).trim();
+      if(!text) return;
+      if(text.length > 140) text = text.slice(0,140).trim() + "…";
+      const el = document.getElementById(`desc-${i}`);
+      if(el) el.textContent = text;
+    }catch(e){ /* keep default description */ }
+  }));
+}
 
-  document.addEventListener("DOMContentLoaded", loadGames);
-})();
+// ** بخش اضافه شده: اتصال دکمه‌های دانلود به سیستم لاگین **
+function bindDownloadButtons() {
+  document.querySelectorAll('.btn-download').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      if (!currentUser) {
+        e.preventDefault(); // جلوگیری از دانلود
+        document.getElementById('login-modal').classList.add('active'); // نمایش مدال ورود
+      }
+    });
+  });
+}
+
+function renderProducts(products){
+  grid.innerHTML = products.map(cardHTML).join("");
+  observeCards();
+  loadDescriptions(products);
+  bindDownloadButtons(); // اجرا کردن لاجیک دانلود بعد از ساخته شدن کارت‌ها
+}
+
+async function loadGames(){
+  renderSkeleton();
+  try{
+    const res = await fetch(API_URL);
+    if(!res.ok) throw new Error("api-" + res.status);
+    const files = await res.json();
+    if(!Array.isArray(files)) throw new Error("unexpected-response");
+    const groups = groupFiles(files);
+    const products = Object.values(groups).filter(g => g.image && g.archive);
+    if(products.length === 0){ renderEmpty(); return; }
+    products.sort((a,b) => a.displayName.localeCompare(b.displayName, "fa"));
+    renderProducts(products);
+  }catch(err){
+    renderError();
+  }
+}
+
+// ** سیستم مدیریت Auth و ظاهر هدر سایت **
+async function initAuth() {
+  const { data: { session } } = await supabase.auth.getSession();
+  currentUser = session?.user || null;
+  updateAuthUI();
+
+  supabase.auth.onAuthStateChange((_event, session) => {
+    currentUser = session?.user || null;
+    updateAuthUI();
+  });
+}
+
+function updateAuthUI() {
+  const authUi = document.getElementById('auth-ui');
+  if (currentUser) {
+    authUi.innerHTML = `
+      <span class="user-email">${currentUser.email}</span>
+      <button id="logout-btn" class="btn-outline" style="border-color:#ef4444; color:#ef4444; padding:0.3rem 0.8rem; font-size:0.8rem;">خروج</button>
+    `;
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+      await supabase.auth.signOut();
+    });
+  } else {
+    authUi.innerHTML = `
+      <a href="login.html" class="btn-outline">ورود</a>
+      <a href="register.html" class="btn-primary" style="padding: 0.4rem 1.2rem; font-size: 0.9rem;">ثبت نام</a>
+    `;
+  }
+}
+
+// بستن مدال ورود
+document.getElementById('close-modal').addEventListener('click', () => {
+  document.getElementById('login-modal').classList.remove('active');
+});
+
+// اجرای توابع در شروع به کار سایت
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => { initAuth(); loadGames(); });
+} else {
+  initAuth(); loadGames();
+}
 </script>
 </body>
 </html>
