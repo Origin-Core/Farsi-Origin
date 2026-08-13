@@ -168,7 +168,7 @@
 
 <div align="center">
 
-## ◇ سیستم سه‌بعدی ◇
+## ◇ https://origin-core.github.io/Farsi-Origin/ ◇
 
 <img src="https://readme-typing-svg.demolab.com?font=Orbitron&size=18&duration=1800&pause=500&color=A855F7&center=true&vCenter=true&width=600&lines=DISCOVER;INSTALL;PLAY;ENJOY"/>
 
