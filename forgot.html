@@ -3,75 +3,9 @@
 <html lang="fa" dir="rtl">
 
 <head>
-
 <meta charset="UTF-8">
 
 <title>بازیابی رمز</title>
-
-
-<style>
-
-body{
-
-background:#020617;
-
-color:white;
-
-font-family:tahoma;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-height:100vh;
-
-}
-
-
-.box{
-
-background:#0f172a;
-
-padding:35px;
-
-border-radius:25px;
-
-width:350px;
-
-}
-
-
-
-input,button{
-
-width:100%;
-
-padding:15px;
-
-margin-top:15px;
-
-border-radius:12px;
-
-border:0;
-
-}
-
-
-
-button{
-
-background:#10b981;
-
-font-weight:bold;
-
-}
-
-
-
-</style>
-
 
 </head>
 
@@ -79,75 +13,56 @@ font-weight:bold;
 <body>
 
 
-<div class="box">
-
-
-<h2>
-فراموشی رمز عبور
-</h2>
+<h1>
+بازیابی رمز عبور
+</h1>
 
 
 <input id="email"
 placeholder="ایمیل">
 
 
-<button onclick="sendReset()">
-
+<button id="send">
 ارسال لینک
-
 </button>
 
 
 <p id="msg"></p>
 
 
-</div>
-
-
 
 <script type="module">
 
 
-import {supabase}
-from "./supabase-config.js";
+import {forgot}
+from "./auth.js";
 
 
 
-window.sendReset=async()=>{
+send.onclick=async()=>{
 
 
-const email=
-document.getElementById("email").value;
+try{
 
 
-
-const {error}=
-
-await supabase.auth.resetPasswordForEmail(
-
-email,
-
-{
-
-redirectTo:
-location.origin+"/reset.html"
-
-}
-
-);
+await forgot(email.value);
 
 
-
-document.getElementById("msg").innerHTML=
-
-error?
-
-error.message:
-
-"✅ لینک بازیابی ارسال شد";
+msg.innerText=
+"لینک بازیابی ارسال شد";
 
 
 }
+
+catch(e){
+
+msg.innerText=e.message;
+
+}
+
+
+}
+
 
 
 </script>
