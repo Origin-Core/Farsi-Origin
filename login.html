@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+<title>
+ورود | Farsi-Origin
+</title>
+
+
+<style>
+
+body{
+
+background:#0A1118;
+color:white;
+font-family:tahoma;
+display:flex;
+height:100vh;
+align-items:center;
+justify-content:center;
+
+}
+
+
+.box{
+
+background:#111C26;
+padding:35px;
+border-radius:20px;
+width:350px;
+
+}
+
+
+input{
+
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:10px;
+border:0;
+
+}
+
+
+button{
+
+width:100%;
+padding:12px;
+background:#10B981;
+border:0;
+border-radius:20px;
+font-weight:bold;
+cursor:pointer;
+
+}
+
+
+a{
+
+color:#10B981;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="box">
+
+
+<h2>
+ورود به حساب
+</h2>
+
+
+<input id="email" placeholder="ایمیل">
+
+
+<input id="password" type="password" placeholder="رمز عبور">
+
+
+<button id="login">
+
+ورود
+
+</button>
+
+
+<br><br>
+
+
+<a href="register.html">
+ثبت نام
+</a>
+
+<br>
+
+<a href="forgot.html">
+فراموشی رمز
+</a>
+
+
+</div>
+
+
+
+<script type="module">
+
+
+import {login}
+from "./auth.js";
+
+
+document
+.getElementById("login")
+.onclick=()=>{
+
+
+login(
+
+email.value,
+
+password.value
+
+);
+
+
+};
+
+
+</script>
+
+
+</body>
+</html>
