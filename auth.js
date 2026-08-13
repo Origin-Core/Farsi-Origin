@@ -1,134 +1,168 @@
 import { supabase } from "./supabase-config.js";
 
 
-let registerMode=false;
+// ثبت نام
 
+export async function register(email,password){
 
+const {data,error}=await supabase.auth.signUp({
 
-const title =
-document.getElementById("title");
-
-
-const button =
-document.getElementById("submit");
-
-
-const change =
-document.getElementById("change");
-
-
-const message =
-document.getElementById("message");
-
-
-
-
-change.onclick=()=>{
-
-
-registerMode=!registerMode;
-
-
-if(registerMode){
-
-title.innerHTML="ثبت نام";
-
-button.innerHTML="ایجاد حساب";
-
-change.innerHTML="قبلاً حساب ساخته‌ام";
-
-
-}
-
-else{
-
-
-title.innerHTML="ورود";
-
-button.innerHTML="ورود";
-
-change.innerHTML="ساخت حساب جدید";
-
-
-}
-
-
-
-}
-
-
-
-
-button.onclick=async()=>{
-
-
-message.innerHTML="در حال پردازش...";
-
-
-const email=
-document.getElementById("email").value.trim();
-
-
-const password=
-document.getElementById("password").value;
-
-
-
-if(!email || !password){
-
-message.innerHTML=
-"ایمیل و رمز را وارد کنید";
-
-return;
-
-}
-
-
-
-if(registerMode){
-
-
-
-const {data,error}=
-
-await supabase.auth.signUp({
-
-email:email,
-
-password:password
+email,
+password
 
 });
+
+
+if(error){
+
+alert(error.message);
+return false;
+
+}
+
+
+alert("ثبت نام انجام شد. ایمیل خود را بررسی کنید.");
+
+return true;
+
+}
+
+
+
+
+
+// ورود
+
+export async function login(email,password){
+
+
+const {data,error}=await supabase.auth.signInWithPassword({
+
+email,
+password
+
+});
+
+
+if(error){
+
+alert(error.message);
+return false;
+
+}
+
+
+window.location.href="index.html";
+
+return true;
+
+
+}
+
+
+
+
+
+
+// خروج
+
+export async function logout(){
+
+
+await supabase.auth.signOut();
+
+
+window.location.reload();
+
+
+}
+
+
+
+
+
+
+// گرفتن کاربر
+
+export async function getUser(){
+
+
+const {
+
+data:{
+session
+
+}
+
+}
+
+=
+await supabase.auth.getSession();
+
+
+
+return session?.user || null;
+
+
+}
+
+
+
+
+
+
+
+// فراموشی رمز
+
+export async function forgotPassword(email){
+
+
+const {error}=
+
+await supabase.auth.resetPasswordForEmail(
+email,
+{
+
+redirectTo:
+window.location.origin+"/reset.html"
+
+}
+
+);
 
 
 
 if(error){
 
-message.innerHTML=
-error.message;
+alert(error.message);
 
-return;
+return false;
+
+}
+
+
+
+alert("لینک بازیابی ارسال شد.");
+
+return true;
+
 
 }
 
 
 
-message.innerHTML=
-
-"✅ ثبت نام انجام شد. ایمیل تایید را بررسی کنید";
 
 
 
-}
 
-else{
+// تغییر رمز
 
+export async function updatePassword(password){
 
 
 const {error}=
 
-await supabase.auth.signInWithPassword({
-
-email,
+await supabase.auth.updateUser({
 
 password
 
@@ -138,20 +172,19 @@ password
 
 if(error){
 
-message.innerHTML=
-"ایمیل یا رمز اشتباه است";
+alert(error.message);
 
-return;
-
-}
-
-
-
-location.href="index.html";
-
+return false;
 
 }
 
 
+alert("رمز عبور تغییر کرد.");
 
-};
+window.location.href="login.html";
+
+
+return true;
+
+
+}
