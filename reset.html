@@ -2,23 +2,22 @@
 
 <html lang="fa" dir="rtl">
 
-
 <head>
 
 <meta charset="UTF-8">
 
 <title>رمز جدید</title>
 
-
 </head>
+
 
 
 <body>
 
 
-<h2>
-رمز جدید را وارد کنید
-</h2>
+<h1>
+رمز جدید
+</h1>
 
 
 <input id="password"
@@ -26,10 +25,8 @@ type="password"
 placeholder="رمز جدید">
 
 
-<button onclick="changePassword()">
-
-ثبت رمز جدید
-
+<button id="change">
+تغییر رمز
 </button>
 
 
@@ -37,50 +34,57 @@ placeholder="رمز جدید">
 
 
 
+
 <script type="module">
 
 
-import {supabase}
-
-from "./supabase-config.js";
-
-
-
-window.changePassword=async()=>{
-
-
-const password=
-
-document.getElementById("password").value;
+import {
+resetPassword
+}
+from "./auth.js";
 
 
 
-const {error}=
-
-await supabase.auth.updateUser({
-
-password:password
-
-});
+change.onclick=async()=>{
 
 
+try{
 
-document.getElementById("msg").innerHTML=
 
-error?
+await resetPassword(
+password.value
+);
 
-error.message:
 
-"✅ رمز تغییر کرد";
+msg.innerText=
+"رمز تغییر کرد";
+
+
+setTimeout(()=>{
+
+location.href="login.html";
+
+},2000);
+
 
 
 }
+
+catch(e){
+
+msg.innerText=e.message;
+
+}
+
+
+
+}
+
 
 
 </script>
 
 
 </body>
-
 
 </html>
