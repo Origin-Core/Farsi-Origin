@@ -1,60 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="fa" dir="rtl">
 
 <head>
 
 <meta charset="UTF-8">
 
-<title>
-ثبت نام | Farsi-Origin
-</title>
-
-
-<style>
-
-body{
-
-background:#0A1118;
-color:white;
-font-family:tahoma;
-display:flex;
-align-items:center;
-justify-content:center;
-height:100vh;
-
-}
-
-
-.box{
-
-background:#111C26;
-padding:35px;
-border-radius:20px;
-width:350px;
-
-}
-
-
-input{
-
-width:100%;
-padding:12px;
-margin:10px 0;
-
-}
-
-
-button{
-
-width:100%;
-padding:12px;
-background:#10B981;
-border:0;
-border-radius:20px;
-
-}
-
-</style>
+<title>ثبت نام</title>
 
 </head>
 
@@ -62,16 +14,13 @@ border-radius:20px;
 <body>
 
 
-<div class="box">
+<div class="auth-box">
 
 
-<h2>
-ساخت حساب
-</h2>
+<h1>ثبت نام</h1>
 
 
 <input id="email" placeholder="ایمیل">
-
 
 <input id="password"
 type="password"
@@ -79,10 +28,11 @@ placeholder="رمز عبور">
 
 
 <button id="register">
-
 ثبت نام
-
 </button>
+
+
+<p id="msg"></p>
 
 
 </div>
@@ -91,18 +41,18 @@ placeholder="رمز عبور">
 
 <script type="module">
 
-
 import {register}
 from "./auth.js";
 
 
 
-document
-.getElementById("register")
-.onclick=()=>{
+register.onclick=async()=>{
 
 
-register(
+try{
+
+
+await register(
 
 email.value,
 
@@ -111,7 +61,22 @@ password.value
 );
 
 
-};
+msg.innerText=
+"ایمیل تایید ارسال شد";
+
+
+}
+
+
+catch(e){
+
+msg.innerText=e.message;
+
+}
+
+
+
+}
 
 
 
