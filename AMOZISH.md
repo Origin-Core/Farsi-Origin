@@ -1,11 +1,10 @@
 ---
 layout: product
-title: آموزش فارسی ساز 
+title: آموزش فارسی ساز
 version: x.0
 image1: Farsi-Origin/AMOZISH.png
-
+image2: Farsi-Origin/AMOZISH.png
 download_url: https://github.com/Origin-Core/Farsi-Origin/raw/refs/heads/main/AMOZISH.zip
 ---
-
-**اینجا دقیقاً همان جایی است که باید توضیحات، معرفی و راهنمای نصب فارسی‌ساز را بنویسید.**
-هرچقدر که خواستید می‌توانید اینجا متن، پاراگراف یا راهنما اضافه کنید و هیچ محدودیتی ندارید.
+آموزش فارسی ساز بازی ها⚠️ درصورت بروز هرگونه مشکل یا داشتن هرگونه سوال به کانال
+                                     تلگرام ما مراجعه کنید : @FARSI_ORIGIN
