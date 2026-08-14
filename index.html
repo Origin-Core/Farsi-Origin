@@ -759,10 +759,10 @@
             contentArea.innerHTML = text;
           } else {
             // اگر txt ساده بود، پاراگراف‌بندی کن
-            contentArea.innerHTML = text.split('\n\n')
-                .filter(para => para.trim() !== '')
-                .map(para => `<p>${escapeHtml(para).replace(/\n/g, '<br/>')}</p>`)
-                .join('');
+          contentArea.innerHTML = text
+        .replace(/\n/g, "<br>")
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+    .replace(/__(.*?)__/g, "<strong>$1</strong>");
           }
         })
         .catch(() => contentArea.innerHTML = '<p style="color:var(--text-muted)">خطا در دریافت توضیحات کامل.</p>');
