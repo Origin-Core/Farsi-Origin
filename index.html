@@ -18,19 +18,9 @@
 
 
 
+<
 
-<title>Farsi-Origin | پروژه متن‌باز فارسی</title>
 
-<meta name="description"
-content="Farsi-Origin یک پروژه متن‌باز فارسی است که ...">
-
-<meta name="keywords"
-content="Farsi-Origin, Farsi Origin, پروژه فارسی, متن باز, ابزار فارسی">
-
-<meta name="robots" content="index, follow">
-
-<link rel="canonical"
-href="https://origin-core.github.io/Farsi-Origin/">
 
 
 
@@ -428,8 +418,9 @@ href="https://origin-core.github.io/Farsi-Origin/">
   <section class="hero" id="top">
     <div class="container hero-inner">
       <p class="eyebrow">فارسی‌سازی بازی‌های ویدیویی</p>
-      <h1 class="hero-title">بازی کن، به زبون خودت.</h1>
-      <p class="hero-sub">هر فارسی‌سازی این‌جا یه فایل آماده‌ست؛ دانلودش کن، رو بازیت نصب کن و این‌بار کل داستان رو با لذت بیشتری تجربه کن.</p>
+      <h1 class="hero-title">   Farsi-Originفارسی‌سازی بازی‌های ویدیویی</h1>
+      <p class="hero-sub">  در Farsi-Origin فارسی‌ساز بازی‌های ویدیویی را دانلود کنید.
+  هر پروژه شامل فایل فارسی‌سازی، اطلاعات نصب و توضیحات مربوط به بازی است.</p>
       <a class="btn-primary" href="#games">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
         دیدن فارسی‌سازی‌ها
@@ -541,7 +532,33 @@ href="https://origin-core.github.io/Farsi-Origin/">
   // اسم مخزن طبق لینک ارسالی شما اصلاح شد
   const GH_OWNER = "Origin-Core";
   const GH_REPO  = "Farsi-Origin";
-  const API_URL  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/`;
+ const API_URL =
+  `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/`;
+
+async function fetchWithRetry(url, retries = 2) {
+  for (let i = 0; i <= retries; i++) {
+    try {
+      const res = await fetch(url, {
+        headers: {
+          "Accept": "application/vnd.github+json"
+        }
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+
+      return await res.json();
+
+    } catch (error) {
+      if (i === retries) throw error;
+
+      await new Promise(resolve =>
+        setTimeout(resolve, 1000 * (i + 1))
+      );
+    }
+  }
+}
 
   const IMAGE_EXTS   = ["png","jpg","jpeg","webp","gif"];
   const ARCHIVE_EXTS = ["zip","rar","7z"];
@@ -822,9 +839,7 @@ href="https://origin-core.github.io/Farsi-Origin/">
   async function loadGames(){
     renderSkeleton();
     try{
-      const res = await fetch(API_URL);
-      if(!res.ok) throw new Error("api-" + res.status);
-      const files = await res.json();
+     const files = await fetchWithRetry(API_URL);
       if(!Array.isArray(files)) throw new Error("unexpected-response");
       const groups = groupFiles(files);
       const products = Object.values(groups).filter(g => g.image && g.archive);
