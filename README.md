@@ -53,3 +53,8 @@
 **[ 🌐 مشاهده لیست کامل بازی‌های فارسی‌شده ](https://origin-core.github.io/Farsi-Origin/)**
 
 </div>
+<br>
+#Farsi-Origin
+#FarsiOrigin
+#farsi-Origin
+#farsiOrigin
