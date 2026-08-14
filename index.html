@@ -5,13 +5,367 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Farsi-Origin | فارسی‌سازی بازی‌های ویدیویی</title>
 <meta name="description" content="فارسی‌سازی بازی‌های ویدیویی — هر فارسی‌سازی به‌محض آپلود در گیت‌هاب، این‌جا به‌صورت یک محصول قابل دانلود ظاهر می‌شود." />
-<meta name="theme-color" content="#0A141F" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='11' width='26' height='13' rx='6.5' fill='%2318B87C'/%3E%3Crect x='6' y='7' width='6' height='6' rx='2' fill='%2318B87C'/%3E%3Crect x='20' y='7' width='6' height='6' rx='2' fill='%2318B87C'/%3E%3Crect x='9.2' y='14' width='2.6' height='7' rx='0.8' fill='%230E7A54'/%3E%3Crect x='6.7' y='16.2' width='7.6' height='2.6' rx='0.8' fill='%230E7A54'/%3E%3Ccircle cx='22' cy='15.5' r='1.8' fill='%230E7A54'/%3E%3Ccircle cx='25.5' cy='19' r='1.8' fill='%230E7A54'/%3E%3C/svg%3E" />
+<meta name="theme-color" content="#0A1118" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%230b4f36'/%3E%3Ccircle cx='11' cy='16' r='3' fill='%2310b981'/%3E%3Ccircle cx='21' cy='16' r='3' fill='%2310b981'/%3E%3C/svg%3E" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css" />
+
+<style>
+  :root{
+    /* تم اصلی */
+    --bg-deep:#0A1118;
+    --bg-panel:#111C26;
+    --bg-panel-light:#1A2936;
+    --jade-dark:#0B4F36;
+    --jade-bright:#10B981;
+    --jade-soft:#A7F3D0;
+    --teal:#34D399;
+    
+    /* تم ویژه (پولی) */
+    --gold-dark:#78350F;
+    --gold-bright:#F59E0B;
+    --gold-soft:#FDE68A;
+
+    --text-primary:#F1F5F9;
+    --text-muted:#94A3B8;
+    --border-subtle:rgba(52,211,153,0.08);
+    --border-gold:rgba(245,158,11,0.2);
+    
+    --font-display:'Lalezar', sans-serif;
+    --font-body:'Noto Sans Arabic', sans-serif;
+    --font-brand:'Space Grotesk', sans-serif;
+    
+    --radius-lg:20px;
+    --radius-md:14px;
+    
+    /* انیمیشن فنری‌تر و گرافیکی‌تر */
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg-deep);
+    color:var(--text-primary);
+    font-family:var(--font-body);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{ max-width:100%; display:block; }
+  a, button{ color:inherit; text-decoration:none; font-family:inherit; border:none; cursor:pointer; }
+  ::selection{ background:var(--jade-bright); color:var(--bg-deep); }
+  :focus-visible{ outline:2px solid var(--jade-bright); outline-offset:3px; border-radius:4px; }
+
+  .container{ max-width:1180px; margin-inline:auto; padding-inline:clamp(1rem,4vw,2rem); }
+
+  .bg-ambient{
+    position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:
+      radial-gradient(600px 420px at 85% -5%, rgba(16,185,129,0.12), transparent 60%),
+      radial-gradient(560px 420px at 10% 15%, rgba(52,211,153,0.06), transparent 60%),
+      radial-gradient(400px 400px at 50% 120%, rgba(245,158,11,0.03), transparent 60%),
+      var(--bg-deep);
+  }
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:sticky; top:0; z-index:40;
+    background:rgba(10,17,24,0.75);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border-subtle);
+    transition: transform 0.3s var(--ease-smooth);
+  }
+  .header-inner{ display:flex; align-items:center; justify-content:space-between; padding-block:0.9rem; }
+  .logo{ display:flex; align-items:center; gap:0.65rem; }
+  
+  .logo-mark{ width:36px; height:36px; flex:none; transition: transform 0.4s var(--ease-spring), filter 0.4s ease; }
+  .logo:hover .logo-mark { transform: scale(1.12) rotate(-5deg); filter: drop-shadow(0 0 8px rgba(16,185,129,0.4)); }
+  
+  .logo-text{ font-family:var(--font-brand); font-weight:700; font-size:1.25rem; letter-spacing:0.01em; }
+  .logo-accent{ color:var(--jade-bright); }
+  .nav{ display:flex; align-items:center; gap:clamp(1rem,3vw,2rem); font-size:0.95rem; color:var(--text-muted); font-weight:500; }
+  .nav a{ transition:color .2s ease, transform .2s ease; display:inline-block; }
+  .nav a:hover{ color:var(--text-primary); transform:translateY(-1px); }
+
+  /* ---------- Sections generic ---------- */
+  section{ padding-block:clamp(3rem,8vw,5.5rem); }
+  .eyebrow{
+    font-family:var(--font-brand); font-weight:600; font-size:0.85rem;
+    letter-spacing:0.12em; color:var(--jade-bright); text-transform:uppercase;
+    margin:0 0 0.75rem;
+    display:inline-block;
+    padding:0.2rem 0.8rem;
+    background:rgba(16,185,129,0.1);
+    border-radius:100px;
+  }
+  h2{ font-family:var(--font-display); font-weight:400; font-size:clamp(1.8rem,3.2vw,2.5rem); margin:0 0 2.5rem; letter-spacing:0.5px; }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding-block:clamp(4rem,12vw,7rem) clamp(3rem,8vw,5rem); position:relative; overflow:hidden; }
+  .hero-inner{ max-width:760px; }
+  .hero-title{
+    font-family:var(--font-display); font-weight:400;
+    font-size:clamp(2.4rem,6vw,4.2rem); line-height:1.25; margin:0 0 1.1rem;
+    opacity:0; transform:translateY(20px);
+    animation:riseIn .8s var(--ease-spring) .05s forwards;
+    background: linear-gradient(135deg, #FFF 30%, var(--jade-soft));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-sub{
+    font-size:clamp(1rem,1.6vw,1.15rem); color:var(--text-muted); max-width:52ch; margin:0 0 2rem;
+    opacity:0; transform:translateY(20px);
+    animation:riseIn .8s var(--ease-smooth) .15s forwards;
+  }
+  .hero .btn-primary{
+    opacity:0; transform:translateY(20px);
+    animation:riseIn .8s var(--ease-spring) .25s forwards;
+  }
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:0.5rem;
+    background:var(--jade-bright); color:var(--bg-deep); font-weight:700; font-size:1rem;
+    padding:0.9rem 1.8rem; border-radius:100px;
+    box-shadow:0 8px 24px -8px rgba(16,185,129,0.6);
+    transition:transform .3s var(--ease-spring), box-shadow .3s ease, background .3s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-3px) scale(1.02); background: #14b8a6; box-shadow:0 14px 30px -8px rgba(20,184,166,0.7); }
+  .btn-primary:active{ transform:translateY(1px) scale(0.98); }
+
+  /* ---------- How it works ---------- */
+  .how{ border-top:1px solid var(--border-subtle); border-bottom:1px solid var(--border-subtle); background:rgba(16,185,129,0.015); position:relative; }
+  .how::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:60%; height:1px; background:linear-gradient(90deg,transparent,rgba(16,185,129,0.3),transparent); }
+  .steps{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2rem; }
+  .steps li{ position:relative; padding-inline-start:0; padding:1.5rem; background:rgba(26,41,54,0.3); border-radius:var(--radius-lg); border:1px solid rgba(255,255,255,0.03); transition:transform 0.3s ease; }
+  .steps li:hover{ transform:translateY(-4px); background:rgba(26,41,54,0.6); }
+  .step-num{
+    display:flex; align-items:center; justify-content:center;
+    width:2.8rem; height:2.8rem; border-radius:12px;
+    background:var(--bg-panel); border:1px solid var(--border-subtle);
+    font-family:var(--font-brand); font-weight:700; color:var(--jade-bright); font-size:1.2rem;
+    margin-bottom:1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2), inset 0 0 10px rgba(16,185,129,0.05);
+  }
+  .steps h3{ font-family:var(--font-body); font-weight:700; font-size:1.1rem; margin:0 0 0.5rem; color:var(--text-primary); }
+  .steps p{ color:var(--text-muted); font-size:0.94rem; margin:0; line-height:1.6; }
+
+  /* ---------- Games grid ---------- */
+  .games-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.8rem; }
+  
+  .game-card{
+    background:var(--bg-panel); border:1px solid var(--border-subtle); border-radius:var(--radius-lg);
+    overflow:hidden; display:flex; flex-direction:column; position:relative;
+    opacity:0; transform:translateY(25px);
+    transition:opacity .6s var(--ease-smooth), transform .5s var(--ease-spring), border-color .3s ease, box-shadow .3s ease;
+    transition-delay:var(--delay,0ms);
+  }
+  .game-card.in-view{ opacity:1; transform:translateY(0); }
+  .game-card:not(.skeleton):hover{
+    border-color:rgba(16,185,129,0.4);
+    box-shadow:0 18px 45px -15px rgba(16,185,129,0.25);
+    transform:translateY(-6px);
+  }
+  
+  /* حالت هاور برای محصولات پولی */
+  .game-card.is-premium:not(.skeleton):hover{
+    border-color:rgba(245,158,11,0.5);
+    box-shadow:0 18px 45px -15px rgba(245,158,11,0.25);
+  }
+
+  .card-media{ position:relative; aspect-ratio:16/10; overflow:hidden; background:var(--bg-panel-light); border-bottom:1px solid rgba(255,255,255,0.05); }
+  .card-media img{ width:100%; height:100%; object-fit:cover; transition:transform .6s var(--ease-smooth); }
+  .game-card:hover .card-media img{ transform:scale(1.08); }
+  
+  .ribbon{
+    position:absolute; top:0.8rem; right:0.8rem;
+    background:rgba(11,79,54,0.9); backdrop-filter:blur(4px); color:var(--jade-soft); 
+    font-weight:700; font-size:0.75rem; padding:0.4rem 0.8rem; border-radius:100px;
+    border: 1px solid rgba(16,185,129,0.3);
+    box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  }
+  .ribbon.premium {
+    background:rgba(120,53,15,0.9); color:var(--gold-soft);
+    border-color:rgba(245,158,11,0.4);
+  }
+
+  .card-body{ padding:1.4rem 1.25rem; display:flex; flex-direction:column; gap:0.6rem; flex:1; background:linear-gradient(to top, var(--bg-panel) 80%, transparent); }
+  .card-title{ font-family:var(--font-display); font-weight:400; font-size:1.4rem; margin:0; line-height:1.3; letter-spacing:0.3px; }
+  .card-desc{
+    color:var(--text-muted); font-size:0.92rem; margin:0 0 0.5rem; flex:1;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  
+  .card-meta{ display:flex; align-items:center; justify-content:space-between; margin-bottom:0.5rem; }
+  .file-size { font-size:0.82rem; color:var(--text-muted); background:rgba(255,255,255,0.05); padding:0.2rem 0.6rem; border-radius:6px; }
+  
+  .card-actions { display: flex; flex-direction: column; gap: 0.6rem; width: 100%; margin-top: auto; }
+
+  /* دکمه دانلود رایگان */
+  .btn-download{
+    display:flex; align-items:center; justify-content:center; gap:0.5rem; width:100%;
+    background:rgba(16,185,129,0.1); color:var(--jade-bright); font-weight:700; font-size:0.95rem;
+    padding:0.8rem 1rem; border-radius:var(--radius-md); 
+    border:1px solid rgba(16,185,129,0.2);
+    transition:all .2s var(--ease-smooth);
+  }
+  .btn-download:hover{ background:var(--jade-bright); color:var(--bg-deep); border-color:var(--jade-bright); box-shadow:0 6px 16px -4px rgba(16,185,129,0.4); transform:translateY(-2px); }
+  .btn-download:active{ transform:translateY(1px); }
+  
+  /* دکمه خرید پولی */
+  .btn-buy{
+    display:flex; align-items:center; justify-content:center; gap:0.5rem; width:100%;
+    background:linear-gradient(135deg, var(--gold-bright), #D97706); color:var(--bg-deep); font-weight:700; font-size:0.95rem;
+    padding:0.8rem 1rem; border-radius:var(--radius-md); 
+    border:none;
+    box-shadow:0 6px 16px -4px rgba(245,158,11,0.5);
+    transition:all .2s var(--ease-smooth);
+  }
+  .btn-buy:hover{ filter:brightness(1.1); transform:translateY(-2px); box-shadow:0 8px 20px -4px rgba(245,158,11,0.6); }
+  .btn-buy:active{ transform:translateY(1px); }
+
+  /* دکمه اطلاعات بیشتر */
+  .btn-secondary {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%;
+    background: transparent; color: var(--text-primary); font-weight: 600; font-size: 0.95rem;
+    padding: 0.75rem 1rem; border-radius: var(--radius-md); 
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: all .2s var(--ease-smooth);
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3); transform: translateY(-2px); }
+  .btn-secondary:active { transform: translateY(1px); }
+
+  .btn-icon{ width:20px; height:20px; }
+
+  /* ---------- Skeleton ---------- */
+  .game-card.skeleton .card-media{ background:linear-gradient(100deg,var(--bg-panel-light) 30%, rgba(255,255,255,0.04) 50%, var(--bg-panel-light) 70%); background-size:200% 100%; animation:shimmer 1.5s infinite linear; }
+  .skeleton-line{ height:0.9rem; border-radius:6px; margin-bottom:0.7rem; background:linear-gradient(100deg,var(--bg-panel-light) 30%, rgba(255,255,255,0.04) 50%, var(--bg-panel-light) 70%); background-size:200% 100%; animation:shimmer 1.5s infinite linear; }
+  .skeleton .w-70{ width:70%; } .skeleton .w-100{ width:100%; } .skeleton .w-40{ width:40%; }
+
+  /* ---------- Empty / error states ---------- */
+  .state-message{
+    grid-column:1/-1; text-align:center; padding:4rem 1rem;
+    border:2px dashed rgba(255,255,255,0.1); border-radius:var(--radius-lg);
+    background:rgba(255,255,255,0.02);
+  }
+  .state-title{ font-family:var(--font-display); font-size:1.5rem; margin:0 0 0.5rem; }
+  .state-sub{ color:var(--text-muted); margin:0 0 1.5rem; }
+  .btn-retry{
+    background:transparent; border:1px solid var(--jade-bright); color:var(--jade-bright);
+    font-family:var(--font-body); font-weight:600; padding:0.7rem 1.6rem; border-radius:100px;
+    cursor:pointer; transition:all .2s var(--ease-smooth);
+  }
+  .btn-retry:hover{ background:var(--jade-bright); color:var(--bg-deep); transform:scale(1.05); }
+
+  /* ---------- Footer ---------- */
+  .site-footer{ border-top:1px solid var(--border-subtle); padding-block:3rem; background:rgba(10,17,24,0.9); }
+  .footer-inner{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.5rem; }
+  .footer-inner p{ color:var(--text-muted); font-size:0.9rem; margin:0.4rem 0 0; }
+  .footer-inner > a{ display:inline-flex; align-items:center; gap:0.4rem; color:var(--text-muted); font-size:0.95rem; font-weight:500; transition:all .2s ease; padding:0.5rem 1rem; border-radius:8px; border:1px solid rgba(255,255,255,0.05); }
+  .footer-inner > a:hover{ color:var(--jade-bright); border-color:var(--jade-bright); background:rgba(16,185,129,0.05); }
+
+  /* ---------- Custom Modal (درگاه مالی) ---------- */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem;
+    background: rgba(10,17,24, 0.85);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .modal-overlay.active { opacity: 1; visibility: visible; pointer-events: auto; }
+  
+  .modal-box {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    width: 100%; max-width: 440px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 40px -10px rgba(245,158,11,0.15);
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+    transition: transform 0.4s var(--ease-spring), opacity 0.3s ease;
+  }
+  .modal-overlay.active .modal-box { transform: translateY(0) scale(1); opacity: 1; }
+  
+  .modal-icon { width: 64px; height: 64px; margin: 0 auto 1.5rem; color: var(--gold-bright); filter: drop-shadow(0 4px 8px rgba(245,158,11,0.4)); }
+  .modal-title { font-family: var(--font-display); font-size: 1.8rem; margin: 0 0 0.8rem; color: var(--text-primary); }
+  .modal-desc { color: var(--text-muted); font-size: 1rem; margin: 0 0 2rem; line-height: 1.6; }
+  
+  .btn-telegram {
+    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    background: #2AABEE; color: #fff; font-weight: 700; font-size: 1.05rem;
+    padding: 1rem; border-radius: var(--radius-md); width: 100%;
+    box-shadow: 0 8px 20px -6px rgba(42,171,238,0.5);
+    transition: all 0.2s var(--ease-spring);
+    margin-bottom: 1rem;
+  }
+  .btn-telegram:hover { transform: translateY(-3px); box-shadow: 0 12px 24px -6px rgba(42,171,238,0.6); }
+  .btn-telegram:active { transform: translateY(0); }
+  
+  .btn-modal-close {
+    background: transparent; color: var(--text-muted); font-weight: 600; font-size: 0.95rem;
+    padding: 0.8rem; width: 100%; border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+  }
+  .btn-modal-close:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); }
+
+  /* ---------- Detail View (صفحه اطلاعات بیشتر) ---------- */
+  #detail-view {
+    padding-block: clamp(3rem, 6vw, 4rem);
+    min-height: 80vh;
+  }
+  .btn-back {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.05); color: var(--text-muted);
+    padding: 0.6rem 1.2rem; border-radius: 100px;
+    font-weight: 600; font-size: 0.95rem; border: 1px solid rgba(255,255,255,0.1);
+    transition: all .2s ease; cursor: pointer; margin-bottom: 2rem;
+  }
+  .btn-back:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); transform: translateX(5px); }
+  
+  .detail-layout { display: flex; flex-direction: column; gap: 2.5rem; }
+  @media (min-width: 768px) { .detail-layout { flex-direction: row; align-items: flex-start; } }
+  
+  .detail-image-wrapper { flex: 0 0 100%; max-width: 420px; position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-subtle); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5); }
+  .detail-image-wrapper img { width: 100%; height: auto; display: block; }
+  
+  .detail-info { flex: 1; }
+  .detail-info .hero-title { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+  .detail-info .card-meta { justify-content: flex-start; gap: 1rem; font-size: 1rem; }
+  
+  .detail-content-area {
+    margin-top: 3rem; background: var(--bg-panel); padding: clamp(1.5rem, 4vw, 3rem);
+    border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);
+    font-size: 1.05rem; line-height: 1.9; color: var(--text-primary);
+  }
+  
+  /* استایل برای کدهای HTML درون توضیحات */
+  .detail-content-area h1, .detail-content-area h2, .detail-content-area h3 { color: var(--jade-bright); font-family: var(--font-display); margin-top: 2.5rem; margin-bottom: 1rem; font-weight: normal; }
+  .detail-content-area h1:first-child, .detail-content-area h2:first-child { margin-top: 0; }
+  .detail-content-area p { margin-bottom: 1.5rem; }
+  .detail-content-area img { border-radius: var(--radius-md); max-width: 100%; margin: 1.5rem 0; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+  .detail-content-area ul, .detail-content-area ol { margin-bottom: 1.5rem; padding-inline-start: 2rem; color: var(--text-muted); }
+  .detail-content-area li { margin-bottom: 0.5rem; }
+  .detail-content-area a { color: var(--teal); text-decoration: underline; text-underline-offset: 4px; transition: color 0.2s; }
+  .detail-content-area a:hover { color: var(--jade-bright); }
+  .detail-content-area blockquote { border-right: 4px solid var(--jade-bright); margin: 0; padding-right: 1rem; color: var(--text-muted); font-style: italic; background: rgba(16,185,129,0.05); padding: 1rem; border-radius: 8px; }
+
+  @keyframes riseIn{ to{ opacity:1; transform:translateY(0); } }
+  @keyframes shimmer{ to{ background-position:-200% 0; } }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .hero-title,.hero-sub,.hero .btn-primary,.game-card,.modal-box { animation:none !important; opacity:1 !important; transform:none !important; transition:none !important; }
+    .game-card:not(.skeleton):hover .card-media img{ transform:none; }
+  }
+</style>
 </head>
 <body>
 
@@ -19,55 +373,62 @@
 
 <header class="site-header">
   <div class="container header-inner">
-    <a class="logo" href="#top" aria-label="Farsi-Origin">
-      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true">
-        <rect class="mark-body" x="3" y="11" width="26" height="13" rx="6.5"/>
-        <rect class="mark-body" x="6" y="7" width="6" height="6" rx="2"/>
-        <rect class="mark-body" x="20" y="7" width="6" height="6" rx="2"/>
-        <rect class="mark-detail" x="9.2" y="14" width="2.6" height="7" rx="0.8"/>
-        <rect class="mark-detail" x="6.7" y="16.2" width="7.6" height="2.6" rx="0.8"/>
-        <circle class="mark-detail" cx="22" cy="15.5" r="1.8"/>
-        <circle class="mark-detail" cx="25.5" cy="19" r="1.8"/>
+    <a class="logo" href="#top" aria-label="Farsi-Origin" onclick="closeDetail(event)">
+      <!-- کاراکتر کلاهخود گیمینگ مدرن -->
+      <svg class="logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M7 14C7 8.47715 11.4772 4 17 4H19C24.5228 4 29 8.47715 29 14V22C29 26.4183 25.4183 30 21 30H15C10.5817 30 7 26.4183 7 22V14Z" fill="#0B4F36"/>
+        <path d="M12 25L18 31L24 25H12Z" fill="#052E20"/>
+        <path d="M10 15C10 13.8954 11.1193 13 12.5 13H14.5C15.8807 13 17 13.8954 17 15V16.5C17 17.0523 15.8807 17.5 14.5 17.5H12.5C11.1193 17.5 10 17.0523 10 16.5V15Z" fill="#10B981"/>
+        <path d="M19 15C19 13.8954 20.1193 13 21.5 13H23.5C24.8807 13 26 13.8954 26 15V16.5C26 17.0523 24.8807 17.5 23.5 17.5H21.5C20.1193 17.5 19 17.0523 19 16.5V15Z" fill="#10B981"/>
+        <rect x="3" y="13" width="4" height="10" rx="2" fill="#10B981"/>
+        <rect x="29" y="13" width="4" height="10" rx="2" fill="#10B981"/>
+        <path d="M7 13C7 9 10 6 14 5H22C26 6 29 9 29 13" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+        <line x1="15" y1="22" x2="21" y2="22" stroke="#052E20" stroke-width="2" stroke-linecap="round"/>
+        <line x1="16" y1="25" x2="20" y2="25" stroke="#052E20" stroke-width="2" stroke-linecap="round"/>
       </svg>
       <span class="logo-text">Farsi<span class="logo-accent">-Origin</span></span>
     </a>
     <nav class="nav">
-      <a href="#games">بازی‌ها</a>
-      <a href="#how">فرایند</a>
+      <a href="#games" onclick="closeDetail(event)">بازی‌ها</a>
+      <a href="#how" onclick="closeDetail(event)">فرایند</a>
       <a href="https://github.com/Origin-Core/Farsi-Origin" target="_blank" rel="noopener">گیت‌هاب</a>
     </nav>
   </div>
 </header>
 
-<main>
+<!-- بخش اصلی سایت (Home) -->
+<main id="home-view">
   <section class="hero" id="top">
     <div class="container hero-inner">
       <p class="eyebrow">فارسی‌سازی بازی‌های ویدیویی</p>
       <h1 class="hero-title">بازی کن، به زبون خودت.</h1>
-      <p class="hero-sub">هر فارسی‌سازی این‌جا یه فایل آماده‌ست؛ دانلودش کن، رو بازیت نصب کن و این‌بار کل داستان رو به فارسی تجربه کن.</p>
-      <a class="btn-primary" href="#games">دیدن فارسی‌سازی‌ها ↓</a>
+      <p class="hero-sub">هر فارسی‌سازی این‌جا یه فایل آماده‌ست؛ دانلودش کن، رو بازیت نصب کن و این‌بار کل داستان رو با لذت بیشتری تجربه کن.</p>
+      <a class="btn-primary" href="#games">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        دیدن فارسی‌سازی‌ها
+      </a>
     </div>
   </section>
 
   <section class="how" id="how">
     <div class="container">
-      <p class="eyebrow">فرایند</p>
+      <p class="eyebrow">روند کار</p>
       <h2>از ترجمه تا دانلود</h2>
       <ol class="steps">
         <li>
           <span class="step-num">۱</span>
-          <h3>ترجمه و تست</h3>
-          <p>متن‌های بازی ترجمه می‌شن و روی نسخه‌ی اصلی تست می‌شن تا چیزی خراب نشه.</p>
+          <h3>ترجمه و تست دقیق</h3>
+          <p>متن‌های بازی با دقت ترجمه می‌شن و روی نسخه‌ی اصلی تست می‌شن تا چیزی از قلم نیفته و بازی کرش نکنه.</p>
         </li>
         <li>
           <span class="step-num">۲</span>
-          <h3>انتشار در مخزن</h3>
-          <p>عکس بازی و فایل فارسی‌سازی، با یک اسم مشترک، در ریشه‌ی همین مخزن گیت‌هاب قرار می‌گیرن.</p>
+          <h3>انتشار</h3>
+          <p>فایل فارسی ساز هم در سایت و هم در مخزن منتشر میشه</p>
         </li>
         <li>
           <span class="step-num">۳</span>
-          <h3>دانلود مستقیم</h3>
-          <p>همون لحظه، بازی به‌صورت یه محصول کامل این‌جا ظاهر می‌شه؛ آماده برای دانلود.</p>
+          <h3>چنل تلگرام</h3>
+          <p>درصورت داشتن هرگونه مشکل به چنل تلگرام ما مراجعه کنید : @FARSI_ORIGIN</p>
         </li>
       </ol>
     </div>
@@ -82,22 +443,159 @@
   </section>
 </main>
 
+<!-- بخش صفحه اطلاعات بیشتر (جزئیات محصول) -->
+<main id="detail-view" style="display: none;">
+  <div class="container">
+    <button class="btn-back" onclick="closeDetail()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      بازگشت به لیست بازی‌ها
+    </button>
+    
+    <div class="detail-layout">
+      <div class="detail-image-wrapper">
+        <img id="detail-image" src="" alt="کاور بازی" />
+      </div>
+      
+      <div class="detail-info">
+        <h1 id="detail-title" class="hero-title">نام بازی</h1>
+        <div class="card-meta">
+          <span id="detail-size" class="file-size">حجم: -</span>
+          <span id="detail-badge" class="ribbon" style="position:relative; top:0; right:0;">فارسی‌سازی</span>
+        </div>
+        
+        <div id="detail-action" style="margin-top: 2rem; max-width: 320px;">
+          <!-- دکمه دانلود/خرید اینجا با جاوا اسکریپت ساخته میشود -->
+        </div>
+      </div>
+    </div>
+    
+    <div id="detail-content" class="detail-content-area">
+      <!-- محتوای کامل HTML یا متنی این‌جا لود می‌شود -->
+    </div>
+  </div>
+</main>
+
 <footer class="site-footer">
   <div class="container footer-inner">
     <div>
       <span class="logo-text">Farsi<span class="logo-accent">-Origin</span></span>
-      <p>یک پروژه‌ی متن‌باز برای فارسی‌سازی بازی‌های ویدیویی.</p>
+      <p><a href="https://t.me/farsi_origin">تلگرام  @FARSI_ORIGIN</a></p>
     </div>
-    <a href="https://github.com/Origin-Core/Farsi-Origin" target="_blank" rel="noopener">مخزن گیت‌هاب ↗</a>
+    <a href="https://github.com/Origin-Core/Farsi-Origin" target="_blank" rel="noopener">
+      مخزن گیت‌هاب
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+    </a>
   </div>
 </footer>
 
-<script src="app.js"></script>
+<!-- پاپ‌آپ (Modal) درگاه مالی / خرید -->
+<div id="premium-modal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <svg class="modal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+      <path d="M11 11h4"></path><path d="M13 9v4"></path>
+    </svg>
+    <h3 id="modal-title" class="modal-title">تهیه نسخه ویژه</h3>
+    <p class="modal-desc">درگاه مالی سایت هنوز راه‌اندازی نشده است. برای خرید این فارسی‌ساز ویژه و حمایت از ما، لطفاً به کانال تلگرام مراجعه کنید.</p>
+    
+    <a href="https://t.me/FARSI_ORIGIN" target="_blank" rel="noopener" class="btn-telegram">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
+      مراجعه به @FARSI_ORIGIN
+    </a>
+    <button type="button" class="btn-modal-close" onclick="closePremiumModal()">بازگشت</button>
+  </div>
+</div>
+
 <script>
 (function(){
   "use strict";
 
+  // اسم مخزن طبق لینک ارسالی شما اصلاح شد
+  const GH_OWNER = "Origin-Core";
+  const GH_REPO  = "Farsi-Origin";
+  const API_URL  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/`;
+
+  const IMAGE_EXTS   = ["png","jpg","jpeg","webp","gif"];
+  const ARCHIVE_EXTS = ["zip","rar","7z"];
+  // فرمت html اضافه شد تا بتوانید از کدهای گرافیکی استفاده کنید
+  const DESC_EXTS    = ["txt","md","html"];
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const grid = document.getElementById("games-grid");
+  const modal = document.getElementById("premium-modal");
+  
+  // آرایه سراسری برای دسترسی به محصولات در صفحه اطلاعات بیشتر
+  window.allProducts = [];
+
+  // توابع کنترل مودال خرید
+  window.openPremiumModal = function() {
+    modal.classList.add("active");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+
+  window.closePremiumModal = function() {
+    modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  modal.addEventListener("click", function(e) {
+    if (e.target === modal) closePremiumModal();
+  });
+
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape" && modal.classList.contains("active")) closePremiumModal();
+  });
+
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  }
+
+  function humanizeName(base){
+    let s = base.replace(/_paid/gi, ""); 
+    s = s.replace(/[-_]+/g, " ").trim();
+    s = s.replace(/\b([a-zA-Z])/g, m => m.toUpperCase());
+    return s;
+  }
+
+  function formatSize(bytes){
+    const units = ["بایت","کیلوبایت","مگابایت","گیگابایت"];
+    let n = bytes, i = 0;
+    while(n >= 1024 && i < units.length - 1){ n /= 1024; i++; }
+    const val = i === 0 ? n : Math.round(n * 10) / 10;
+    return `${val.toLocaleString("fa-IR")} ${units[i]}`;
+  }
+
+  function groupFiles(files){
+    const map = {};
+    for(const f of files){
+      if(f.type !== "file") continue;
+      const dot = f.name.lastIndexOf(".");
+      if(dot <= 0) continue;
+      const base = f.name.slice(0, dot);
+      const ext  = f.name.slice(dot + 1).toLowerCase();
+      const key  = base.toLowerCase().replace(/_paid/g, "");
+      
+      if(!map[key]) {
+        map[key] = { 
+          displayName: humanizeName(base), 
+          image: null, 
+          archive: null, 
+          desc: null,
+          isPaid: base.toLowerCase().includes("_paid")
+        };
+      } else {
+        if(base.toLowerCase().includes("_paid")) map[key].isPaid = true;
+      }
+      
+      if(IMAGE_EXTS.includes(ext)) map[key].image = f;
+      else if(ARCHIVE_EXTS.includes(ext)) map[key].archive = f;
+      else if(DESC_EXTS.includes(ext)) map[key].desc = f;
+    }
+    return map;
+  }
 
   function renderSkeleton(){
     grid.innerHTML = Array.from({length:4}).map(() => `
@@ -114,16 +612,16 @@
   function renderEmpty(){
     grid.innerHTML = `
       <div class="state-message">
-        <p class="state-title">هنوز فارسی‌سازی‌ای منتشر نشده</p>
-        <p class="state-sub">به‌زودی اولین بازی این‌جا قرار می‌گیره. سری بعد که اومدی، لیست پره.</p>
+        <p class="state-title">هنوز محصولی منتشر نشده</p>
+        <p class="state-sub">به‌زودی اولین فارسی‌ساز در این‌جا قرار می‌گیره. منتظر باشید!</p>
       </div>`;
   }
 
   function renderError(){
     grid.innerHTML = `
       <div class="state-message">
-        <p class="state-title">دریافت لیست فارسی‌سازی‌ها ممکن نشد</p>
-        <p class="state-sub">اتصال به گیت‌هاب با مشکل مواجه شد. چند لحظه دیگه دوباره امتحان کن.</p>
+        <p class="state-title">خطا در ارتباط با سرور</p>
+        <p class="state-sub">دریافت لیست بازی‌ها از گیت‌هاب با مشکل مواجه شد. اتصال اینترنت خود را بررسی کنید.</p>
         <button class="btn-retry" id="retry-btn" type="button">تلاش دوباره</button>
       </div>`;
     const btn = document.getElementById("retry-btn");
@@ -131,26 +629,38 @@
   }
 
   function cardHTML(p, i){
-    const sizeStr = FO.formatSize(p.archive.size);
+    const sizeStr = formatSize(p.archive.size);
+    
+    const premiumClass = p.isPaid ? "is-premium" : "";
+    const ribbonClass  = p.isPaid ? "ribbon premium" : "ribbon";
+    const ribbonText   = p.isPaid ? "نسخه ویژه (پولی)" : "فارسی‌سازی";
+    
+    const buttonHtml = p.isPaid 
+      ? `<button class="btn-buy" type="button" onclick="openPremiumModal()">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span>خرید محصول</span>
+         </button>`
+      : `<a class="btn-download" href="${p.archive.download_url}" download="${escapeHtml(p.archive.name)}">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>دانلود رایگان</span>
+         </a>`;
+
     return `
-      <article class="game-card" style="--delay:${i * 60}ms">
+      <article class="game-card ${premiumClass}" style="--delay:${i * 60}ms">
         <div class="card-media">
-          <img src="${p.image.download_url}" alt="جلد فارسی‌سازی ${FO.escapeHtml(p.displayName)}" loading="lazy" />
-          <span class="ribbon">فارسی‌سازی</span>
+          <img src="${p.image.download_url}" alt="جلد ${escapeHtml(p.displayName)}" loading="lazy" />
+          <span class="${ribbonClass}">${ribbonText}</span>
         </div>
         <div class="card-body">
-          <h3 class="card-title">${FO.escapeHtml(p.displayName)}</h3>
-          <p class="card-desc" id="desc-${i}">توضیحی برای این فارسی‌سازی ثبت نشده.</p>
-          <div class="card-meta"><span>${sizeStr}</span></div>
+          <h3 class="card-title">${escapeHtml(p.displayName)}</h3>
+          <p class="card-desc" id="desc-${i}">در حال دریافت توضیحات...</p>
+          <div class="card-meta"><span class="file-size">حجم: ${sizeStr}</span></div>
           <div class="card-actions">
-            <a class="btn-download" href="${p.archive.download_url}" download="${FO.escapeHtml(p.archive.name)}">
-              <svg class="icon-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 21h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span>دانلود فایل</span>
-            </a>
-            <a class="btn-more" href="product.html?g=${encodeURIComponent(p.key)}">
-              <span>اطلاعات بیشتر</span>
-              <svg class="icon-more" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
+            ${buttonHtml}
+            <button class="btn-secondary" type="button" onclick="openDetail(${i})">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              اطلاعات بیشتر
+            </button>
           </div>
         </div>
       </article>`;
@@ -158,36 +668,126 @@
 
   function observeCards(){
     const cards = document.querySelectorAll(".game-card:not(.skeleton)");
-    if(FO.reduceMotion){ cards.forEach(c => c.classList.add("in-view")); return; }
+    if(reduceMotion){ cards.forEach(c => c.classList.add("in-view")); return; }
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in-view"); io.unobserve(e.target); } });
-    }, { threshold:0.15 });
+    }, { threshold:0.1 });
     cards.forEach(c => io.observe(c));
   }
 
+  // لود نسخه خلاصه توضیحات برای صفحه اصلی
   async function loadDescriptions(products){
     await Promise.all(products.map(async (p, i) => {
-      if(!p.desc) return;
+      const el = document.getElementById(`desc-${i}`);
+      if(!p.desc) {
+         if(el) el.textContent = "توضیحی برای این بازی ثبت نشده است.";
+         return;
+      }
       try{
         const res = await fetch(p.desc.download_url);
-        if(!res.ok) return;
+        if(!res.ok) throw new Error();
         let text = (await res.text()).trim();
-        if(!text) return;
-        text = text
-          .replace(/<br\s*\/?>/gi, " ")
-          .replace(/\*\*(.+?)\*\*/g, "$1")
-          .replace(/^[-•]\s*/gm, "")
-          .replace(/\s*\n\s*/g, " ")
-          .trim();
-        if(text.length > 160) text = text.slice(0,160).trim() + "…";
-        const el = document.getElementById(`desc-${i}`);
+        
+        // اگر محتوا HTML بود، سعی میکنیم تگ‌ها را برای صفحه اصلی پاک کنیم
+        if(p.desc.name.endsWith('.html') || (text.includes('<') && text.includes('>'))) {
+           const temp = document.createElement("div");
+           temp.innerHTML = text;
+           text = temp.textContent || temp.innerText || "";
+        }
+        
+        if(!text) {
+          if(el) el.textContent = "توضیحی برای این بازی ثبت نشده است.";
+          return;
+        }
+        if(text.length > 110) text = text.slice(0,110).trim() + "…";
         if(el) el.textContent = text;
-      }catch(e){ /* keep default description */ }
+      }catch(e){
+        if(el) el.textContent = "توضیحی برای این بازی ثبت نشده است.";
+      }
     }));
   }
 
+  // --- توابع مربوط به صفحه اطلاعات بیشتر ---
+  
+  window.openDetail = function(index) {
+    const p = window.allProducts[index];
+    if(!p) return;
+    
+    // ۱. جایگذاری اطلاعات اولیه
+    document.getElementById('detail-image').src = p.image.download_url;
+    document.getElementById('detail-title').textContent = p.displayName;
+    document.getElementById('detail-size').textContent = `حجم: ${formatSize(p.archive.size)}`;
+    
+    const badge = document.getElementById('detail-badge');
+    if(p.isPaid) {
+      badge.className = "ribbon premium";
+      badge.textContent = "نسخه ویژه (پولی)";
+    } else {
+      badge.className = "ribbon";
+      badge.textContent = "فارسی‌سازی";
+    }
+    
+    // ۲. تنظیم دکمه اکشن (دانلود / خرید)
+    const actionContainer = document.getElementById('detail-action');
+    if(p.isPaid) {
+      actionContainer.innerHTML = `<button class="btn-buy" style="padding: 1rem;" type="button" onclick="openPremiumModal()">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span style="font-size: 1.1rem;">خرید و حمایت</span>
+         </button>`;
+    } else {
+      actionContainer.innerHTML = `<a class="btn-download" style="padding: 1rem;" href="${p.archive.download_url}" download="${escapeHtml(p.archive.name)}">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span style="font-size: 1.1rem;">دانلود مستقیم و رایگان</span>
+         </a>`;
+    }
+    
+    // ۳. تغییر صفحات
+    document.getElementById('home-view').style.display = 'none';
+    document.getElementById('detail-view').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    
+    // ۴. لود توضیحات کامل از گیت‌هاب
+    const contentArea = document.getElementById('detail-content');
+    contentArea.innerHTML = '<div style="text-align:center; padding: 2rem;"><div class="skeleton-line w-40" style="margin:auto;"></div></div>';
+    
+    if (p.desc) {
+      fetch(p.desc.download_url)
+        .then(r => r.text())
+        .then(text => {
+          // اگر فایل HTML بود یا تگ HTML داشت، همون‌طور گرافیکی تزریقش کن
+          if (p.desc.name.endsWith('.html') || (text.includes('<') && text.includes('>'))) {
+            contentArea.innerHTML = text;
+          } else {
+            // اگر txt ساده بود، پاراگراف‌بندی کن
+            contentArea.innerHTML = text.split('\n\n')
+                .filter(para => para.trim() !== '')
+                .map(para => `<p>${escapeHtml(para).replace(/\n/g, '<br/>')}</p>`)
+                .join('');
+          }
+        })
+        .catch(() => contentArea.innerHTML = '<p style="color:var(--text-muted)">خطا در دریافت توضیحات کامل.</p>');
+    } else {
+      contentArea.innerHTML = '<p style="color:var(--text-muted); text-align:center;">توضیحات تکمیلی برای این محصول ثبت نشده است.</p>';
+    }
+  };
+
+  window.closeDetail = function(e) {
+    if(e && e.preventDefault) e.preventDefault();
+    document.getElementById('detail-view').style.display = 'none';
+    document.getElementById('home-view').style.display = 'block';
+    // اگر بخواهیم اسکرول به منوی بازی ها برگردد
+    if(!e) {
+      document.getElementById('games').scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.scrollTo(0,0);
+    }
+  };
+
+  // ----------------------------------------
+
   function renderProducts(products){
-    grid.innerHTML = products.map(cardHTML).join("");
+    window.allProducts = products; // ذخیره برای صفحه جزئیات
+    grid.innerHTML = products.map((p, i) => cardHTML(p, i)).join("");
     observeCards();
     loadDescriptions(products);
   }
@@ -195,10 +795,16 @@
   async function loadGames(){
     renderSkeleton();
     try{
-      const groups = await FO.fetchGroups();
-      const products = FO.products(groups);
+      const res = await fetch(API_URL);
+      if(!res.ok) throw new Error("api-" + res.status);
+      const files = await res.json();
+      if(!Array.isArray(files)) throw new Error("unexpected-response");
+      const groups = groupFiles(files);
+      const products = Object.values(groups).filter(g => g.image && g.archive);
       if(products.length === 0){ renderEmpty(); return; }
+      
       products.sort((a,b) => a.displayName.localeCompare(b.displayName, "fa"));
+      
       renderProducts(products);
     }catch(err){
       renderError();
