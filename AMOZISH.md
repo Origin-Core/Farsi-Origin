@@ -1,132 +1,101 @@
-<div align="center">
+<div style="
+  margin: 20px 0;
+  padding: 22px;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-radius: 14px;
+  background: rgba(0, 229, 255, 0.04);
+">
 
-# <span style="color:#00e5ff;">📦 آموزش فارسی‌ساز</span>
+<h2 style="color:#00e5ff; margin-top:0;">
+📦 آموزش فارسی‌ساز
+</h2>
 
-### <span style="color:#a855f7;">FARSI ORIGIN Persian Localization</span>
-
-<br>
-
-<strong style="color:#00ff9d;">🎯 محصول:</strong>
+<p style="color:#c084fc; font-size:16px; font-weight:600;">
 FARSI ORIGIN Persian Localization
+</p>
 
-<br><br>
+<hr style="border:none; border-top:1px solid rgba(255,255,255,.12);">
 
-<strong style="color:#00e5ff;">⚙️ ورژن هماهنگ شده:</strong>
-<span style="color:#a855f7;">X.0</span>
+<p>
+<strong style="color:#00ff9d;">🎯 محصول:</strong><br>
+FARSI ORIGIN Persian Localization
+</p>
 
-</div>
-
----
-
-## <span style="color:#00e5ff;">📖 توضیحات</span>
-
-<br>
-
-<span style="color:#00ff9d;"><strong>آموزش نصب و راه‌اندازی فارسی‌ساز</strong></span>
-
-برای اکثر بازی‌های کامپیوتری
-
-<br><br>
-
-> 💻 <strong style="color:#00e5ff;">پشتیبانی:</strong>
-> Windows / PC Games
-
-<br>
-
----
-
-<div align="center">
-
-## <span style="color:#a855f7;">🚀 مراحل نصب</span>
+<p>
+<strong style="color:#00e5ff;">⚙️ ورژن هماهنگ شده:</strong><br>
+<span style="color:#c084fc;">X.0</span>
+</p>
 
 </div>
-
 <br>
+<div style="
+  margin: 20px 0;
+  padding: 22px;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  border-radius: 14px;
+  background: rgba(168, 85, 247, 0.04);
+">
 
-### <span style="color:#00e5ff;">➤ ① استخراج فایل</span>
+<h2 style="color:#a855f7; margin-top:0;">
+🚀 مراحل نصب
+</h2>
 
+<p>
+<span style="color:#00e5ff; font-weight:bold;">① استخراج فایل</span><br>
 فایل فارسی‌ساز را از حالت فشرده خارج کنید.
+</p>
 
-<br>
+<p>
+<span style="color:#00e5ff; font-weight:bold;">② باز کردن راهنما</span><br>
+فایل <strong>HTML</strong> موجود در پوشه را باز کنید.
+</p>
 
-### <span style="color:#00e5ff;">➤ ② باز کردن راهنما</span>
-
-فایل **HTML** موجود در پوشه را باز کنید.
-
-<br>
-
-### <span style="color:#00e5ff;">➤ ③ مطالعه مراحل</span>
-
+<p>
+<span style="color:#00e5ff; font-weight:bold;">③ مطالعه مراحل</span><br>
 با دقت مراحل نوشته‌شده در راهنما را مطالعه و اجرا کنید.
+</p>
 
-<br>
-
-### <span style="color:#00ff9d;">➤ ④ اجرای بازی</span>
-
-بازی را اجرا کنید و از تجربه‌ی فارسی لذت ببرید! 🎮
-
-<br>
-
----
-
-<div align="center">
-
-## <span style="color:#ffcc00;">⚠️ نکات مهم</span>
+<p>
+<span style="color:#00ff9d; font-weight:bold;">④ اجرای بازی</span><br>
+بازی را اجرا کنید و از تجربه‌ی فارسی لذت ببرید 🎮
+</p>
 
 </div>
 
 <br>
 
-> 💡 قبل از نصب، تمام مراحل موجود در فایل HTML را با دقت مطالعه کنید.
+<div style="
+  margin: 20px 0;
+  padding: 22px;
+  border: 1px solid rgba(255, 77, 109, 0.35);
+  border-radius: 14px;
+  background: rgba(255, 77, 109, 0.04);
+  text-align:center;
+">
 
-> 🔧 مراحل را به ترتیب انجام دهید تا فارسی‌ساز به‌درستی اجرا شود.
+<h2 style="color:#ff4d6d; margin-top:0;">
+🆘 پشتیبانی
+</h2>
 
-<br>
+<p>
+❗ در صورت بروز هرگونه مشکل<br>
+❓ یا داشتن هرگونه سؤال
+</p>
 
----
+<p style="color:#00e5ff; font-weight:bold;">
+💬 به کانال تلگرام ما مراجعه کنید:
+</p>
 
-<div align="center">
-
-## <span style="color:#ff4d6d;">🆘 پشتیبانی</span>
-
-</div>
-
-<br>
-
-<div align="center">
-
-❗ در صورت بروز هرگونه مشکل
-
-یا داشتن هرگونه سؤال
-
-<br><br>
-
-<strong style="color:#00e5ff;">💬 به کانال تلگرام ما مراجعه کنید:</strong>
-
-<br><br>
-
-<a href="https://t.me/FARSI_ORIGIN">
-
-<span style="color:#00ff9d;"><strong>@FARSI_ORIGIN</strong></span>
-
+<a href="https://t.me/FARSI_ORIGIN"
+   style="
+     color:#00ff9d;
+     font-weight:bold;
+     text-decoration:none;
+   ">
+   @FARSI_ORIGIN
 </a>
 
 </div>
 
-<br>
 
----
 
-<div align="center">
-
-<span style="color:#00e5ff;">━━━━━━━━━━━━━━━━━━━━━━</span>
-
-<br><br>
-
-<span style="color:#a855f7;"><strong>✦ F A R S I  O R I G I N ✦</strong></span>
-
-<br><br>
-
-<span style="color:#00e5ff;">━━━━━━━━━━━━━━━━━━━━━━</span>
-
-</div>
