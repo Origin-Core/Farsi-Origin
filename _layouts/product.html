@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - دانلود فارسی‌ساز</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f5f7fa; 
+            color: #333; 
+            margin: 0; 
+            padding: 20px; 
+            line-height: 1.8; 
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: #ffffff; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+        }
+        h1 { 
+            color: #2c3e50; 
+            font-size: 24px;
+            border-bottom: 2px solid #3498db; 
+            padding-bottom: 10px; 
+            margin-top: 0;
+        }
+        .info-box { 
+            background-color: #eafaf1; 
+            padding: 15px 20px; 
+            border-radius: 8px; 
+            margin: 20px 0; 
+            border-right: 4px solid #27ae60; 
+            font-size: 16px;
+        }
+        .images-container { 
+            display: flex; 
+            gap: 15px; 
+            margin: 25px 0; 
+        }
+        .images-container img { 
+            width: calc(50% - 7.5px); 
+            height: auto;
+            border-radius: 8px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+            object-fit: cover;
+            aspect-ratio: 16/9;
+            background-color: #eee;
+        }
+        h2 {
+            color: #34495e;
+            font-size: 20px;
+            margin-top: 30px;
+        }
+        .content-area {
+            font-size: 15px;
+            color: #555;
+            text-align: justify;
+        }
+        .download-section {
+            text-align: center; 
+            margin-top: 40px; 
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .download-btn { 
+            display: inline-block; 
+            background: #3498db; 
+            color: white; 
+            padding: 15px 35px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            font-size: 18px;
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+        }
+        .download-btn:hover { 
+            background: #2980b9; 
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- عنوان محصول -->
+        <h1>{{ page.title }}</h1>
+
+        <!-- بخش تصاویر -->
+        <div class="images-container">
+            <img src="{{ page.image1 }}" alt="تصویر اول {{ page.title }}">
+           
+        </div>
+
+        <!-- باکس اطلاعات نسخه -->
+        <div class="info-box">
+            <strong>نسخه هماهنگ شده:</strong> {{ page.version }}
+        </div>
+
+        <!-- توضیحات محصول -->
+        <h2>اطلاعات و توضیحات</h2>
+        <div class="content-area">
+            {{ content }}
+        </div>
+
+        <!-- دکمه دانلود -->
+        <div class="download-section">
+            <a href="{{ page.download_url }}" class="download-btn">دانلود مستقیم فارسی‌ساز</a>
+        </div>
+    </div>
+</body>
+</html>
