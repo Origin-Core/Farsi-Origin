@@ -1,0 +1,4 @@
+name: "FARSI_ORIGIN"
+description: "تجربه بازی با زبان شیرین فارسی"
+markdown: kramdown
+theme: jekyll-theme-primer
