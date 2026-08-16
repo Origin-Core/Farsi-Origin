@@ -7,36 +7,12 @@
 <meta name="description" content="فارسی‌سازی بازی‌های ویدیویی — فارسی اوریجین –فارسی ساز Farsi_origin" />
 <meta name="theme-color" content="#0A1118" />
 
-
-
 <link rel="icon" type="image/png" href="/Farsi-Origin/favicon.png" />
-
-
-
-
-
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
 <style>
   :root{
     /* تم اصلی */
@@ -47,7 +23,7 @@
     --jade-bright:#10B981;
     --jade-soft:#A7F3D0;
     --teal:#34D399;
-    
+
     /* تم ویژه (پولی) */
     --gold-dark:#78350F;
     --gold-bright:#F59E0B;
@@ -57,14 +33,14 @@
     --text-muted:#94A3B8;
     --border-subtle:rgba(52,211,153,0.08);
     --border-gold:rgba(245,158,11,0.2);
-    
+
     --font-display:'Lalezar', sans-serif;
     --font-body:'Noto Sans Arabic', sans-serif;
     --font-brand:'Space Grotesk', sans-serif;
-    
+
     --radius-lg:20px;
     --radius-md:14px;
-    
+
     /* انیمیشن فنری‌تر و گرافیکی‌تر */
     --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
@@ -108,10 +84,10 @@
   }
   .header-inner{ display:flex; align-items:center; justify-content:space-between; padding-block:0.9rem; }
   .logo{ display:flex; align-items:center; gap:0.65rem; }
-  
+
   .logo-mark{ width:36px; height:36px; flex:none; transition: transform 0.4s var(--ease-spring), filter 0.4s ease; }
   .logo:hover .logo-mark { transform: scale(1.12) rotate(-5deg); filter: drop-shadow(0 0 8px rgba(16,185,129,0.4)); }
-  
+
   .logo-text{ font-family:var(--font-brand); font-weight:700; font-size:1.25rem; letter-spacing:0.01em; }
   .logo-accent{ color:var(--jade-bright); }
   .nav{ display:flex; align-items:center; gap:clamp(1rem,3vw,2rem); font-size:0.95rem; color:var(--text-muted); font-weight:500; }
@@ -179,9 +155,80 @@
   .steps h3{ font-family:var(--font-body); font-weight:700; font-size:1.1rem; margin:0 0 0.5rem; color:var(--text-primary); }
   .steps p{ color:var(--text-muted); font-size:0.94rem; margin:0; line-height:1.6; }
 
+  /* ---------- Request Section (بخش جدید درخواست) ---------- */
+  .request-section {
+    border-bottom: 1px solid var(--border-subtle);
+    padding-block: 3.5rem;
+    background: linear-gradient(180deg, rgba(17,28,38,0.5) 0%, rgba(10,17,24,0.5) 100%);
+  }
+  .request-box {
+    background: var(--bg-panel);
+    border: 1px dashed rgba(16,185,129,0.3);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .request-box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(16,185,129,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .request-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    margin: 0;
+    color: var(--text-primary);
+  }
+  .request-desc {
+    color: var(--text-muted);
+    font-size: 0.98rem;
+    max-width: 650px;
+    margin: 0;
+    line-height: 1.8;
+  }
+  .request-link {
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s ease;
+  }
+  .request-link:hover {
+    color: var(--jade-bright);
+  }
+  .btn-request {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #2AABEE;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.8rem 1.8rem;
+    border-radius: 100px;
+    box-shadow: 0 8px 20px -6px rgba(42,171,238,0.4);
+    transition: all 0.3s var(--ease-spring);
+  }
+  .btn-request:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 25px -6px rgba(42,171,238,0.6);
+    background: #229ED9;
+  }
+
   /* ---------- Games grid ---------- */
   .games-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.8rem; }
-  
+
   .game-card{
     background:var(--bg-panel); border:1px solid var(--border-subtle); border-radius:var(--radius-lg);
     overflow:hidden; display:flex; flex-direction:column; position:relative;
@@ -195,7 +242,7 @@
     box-shadow:0 18px 45px -15px rgba(16,185,129,0.25);
     transform:translateY(-6px);
   }
-  
+
   /* حالت هاور برای محصولات پولی */
   .game-card.is-premium:not(.skeleton):hover{
     border-color:rgba(245,158,11,0.5);
@@ -205,7 +252,7 @@
   .card-media{ position:relative; aspect-ratio:16/10; overflow:hidden; background:var(--bg-panel-light); border-bottom:1px solid rgba(255,255,255,0.05); }
   .card-media img{ width:100%; height:100%; object-fit:cover; transition:transform .6s var(--ease-smooth); }
   .game-card:hover .card-media img{ transform:scale(1.08); }
-  
+
   .ribbon{
     position:absolute; top:0.8rem; right:0.8rem;
     background:rgba(11,79,54,0.9); backdrop-filter:blur(4px); color:var(--jade-soft); 
@@ -224,10 +271,10 @@
     color:var(--text-muted); font-size:0.92rem; margin:0 0 0.5rem; flex:1;
     display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
   }
-  
+
   .card-meta{ display:flex; align-items:center; justify-content:space-between; margin-bottom:0.5rem; }
   .file-size { font-size:0.82rem; color:var(--text-muted); background:rgba(255,255,255,0.05); padding:0.2rem 0.6rem; border-radius:6px; }
-  
+
   .card-actions { display: flex; flex-direction: column; gap: 0.6rem; width: 100%; margin-top: auto; }
 
   /* دکمه دانلود رایگان */
@@ -240,7 +287,7 @@
   }
   .btn-download:hover{ background:var(--jade-bright); color:var(--bg-deep); border-color:var(--jade-bright); box-shadow:0 6px 16px -4px rgba(16,185,129,0.4); transform:translateY(-2px); }
   .btn-download:active{ transform:translateY(1px); }
-  
+
   /* دکمه خرید پولی */
   .btn-buy{
     display:flex; align-items:center; justify-content:center; gap:0.5rem; width:100%;
@@ -304,7 +351,7 @@
     transition: opacity 0.3s ease, visibility 0.3s ease;
   }
   .modal-overlay.active { opacity: 1; visibility: visible; pointer-events: auto; }
-  
+
   .modal-box {
     background: var(--bg-panel);
     border: 1px solid var(--border-gold);
@@ -318,11 +365,11 @@
     transition: transform 0.4s var(--ease-spring), opacity 0.3s ease;
   }
   .modal-overlay.active .modal-box { transform: translateY(0) scale(1); opacity: 1; }
-  
+
   .modal-icon { width: 64px; height: 64px; margin: 0 auto 1.5rem; color: var(--gold-bright); filter: drop-shadow(0 4px 8px rgba(245,158,11,0.4)); }
   .modal-title { font-family: var(--font-display); font-size: 1.8rem; margin: 0 0 0.8rem; color: var(--text-primary); }
   .modal-desc { color: var(--text-muted); font-size: 1rem; margin: 0 0 2rem; line-height: 1.6; }
-  
+
   .btn-telegram {
     display: flex; align-items: center; justify-content: center; gap: 0.6rem;
     background: #2AABEE; color: #fff; font-weight: 700; font-size: 1.05rem;
@@ -333,7 +380,7 @@
   }
   .btn-telegram:hover { transform: translateY(-3px); box-shadow: 0 12px 24px -6px rgba(42,171,238,0.6); }
   .btn-telegram:active { transform: translateY(0); }
-  
+
   .btn-modal-close {
     background: transparent; color: var(--text-muted); font-weight: 600; font-size: 0.95rem;
     padding: 0.8rem; width: 100%; border-radius: var(--radius-md);
@@ -354,23 +401,23 @@
     transition: all .2s ease; cursor: pointer; margin-bottom: 2rem;
   }
   .btn-back:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); transform: translateX(5px); }
-  
+
   .detail-layout { display: flex; flex-direction: column; gap: 2.5rem; }
   @media (min-width: 768px) { .detail-layout { flex-direction: row; align-items: flex-start; } }
-  
+
   .detail-image-wrapper { flex: 0 0 100%; max-width: 420px; position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-subtle); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5); }
   .detail-image-wrapper img { width: 100%; height: auto; display: block; }
-  
+
   .detail-info { flex: 1; }
   .detail-info .hero-title { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
   .detail-info .card-meta { justify-content: flex-start; gap: 1rem; font-size: 1rem; }
-  
+
   .detail-content-area {
     margin-top: 3rem; background: var(--bg-panel); padding: clamp(1.5rem, 4vw, 3rem);
     border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);
     font-size: 1.05rem; line-height: 1.9; color: var(--text-primary);
   }
-  
+
   /* استایل برای کدهای HTML درون توضیحات */
   .detail-content-area h1, .detail-content-area h2, .detail-content-area h3 { color: var(--jade-bright); font-family: var(--font-display); margin-top: 2.5rem; margin-bottom: 1rem; font-weight: normal; }
   .detail-content-area h1:first-child, .detail-content-area h2:first-child { margin-top: 0; }
@@ -392,7 +439,6 @@
   }
 </style>
 
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -404,7 +450,6 @@
 }
 </script>
 
-  
 </head>
 <body>
 
@@ -473,6 +518,25 @@
     </div>
   </section>
 
+  <!-- بخش جدید درخواست فارسی‌ساز -->
+  <section class="request-section">
+    <div class="container">
+      <div class="request-box">
+        <h2 class="request-title">فارسی ساز بازیتو پیدا نکردی؟</h2>
+        <p class="request-desc">
+          برای اینکه فارسی ساز بازی مورد نظرتونو اضافه کنیم در ربات تلگرام بازی خود را اضافه کنید 
+          <a href="https://t.me/ORIGIN_CORE_IR_bot" target="_blank" rel="noopener" class="request-link">@ORIGIN_CORE_IR_bot</a>
+          <br>
+          برای اطلاع از فارسی ساز های اضافه شده در <a href="https://t.me/farsi_origin" target="_blank" rel="noopener" class="request-link">کانال تلگرام ما</a> عضو بشید.
+        </p>
+        <a href="https://t.me/ORIGIN_CORE_IR_bot" target="_blank" rel="noopener" class="btn-request">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
+          درخواست فارسی ساز
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="games" id="games">
     <div class="container">
       <p class="eyebrow">کتابخانه</p>
@@ -489,25 +553,25 @@
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
       بازگشت به لیست بازی‌ها
     </button>
-    
+
     <div class="detail-layout">
       <div class="detail-image-wrapper">
         <img id="detail-image" src="" alt="کاور بازی" />
       </div>
-      
+
       <div class="detail-info">
         <h1 id="detail-title" class="hero-title">نام بازی</h1>
         <div class="card-meta">
           <span id="detail-size" class="file-size">حجم: -</span>
           <span id="detail-badge" class="ribbon" style="position:relative; top:0; right:0;">فارسی‌سازی</span>
         </div>
-        
+
         <div id="detail-action" style="margin-top: 2rem; max-width: 320px;">
           <!-- دکمه دانلود/خرید اینجا با جاوا اسکریپت ساخته میشود -->
         </div>
       </div>
     </div>
-    
+
     <div id="detail-content" class="detail-content-area">
       <!-- محتوای کامل HTML یا متنی این‌جا لود می‌شود -->
     </div>
@@ -517,13 +581,6 @@
 <footer class="site-footer">
   <div class="container footer-inner">
     <div>
-
-
-
-
-
-
-      
       <span class="logo-text">Farsi<span class="logo-accent">-Origin</span></span>
       <p><a href="https://t.me/farsi_origin">تلگرام  @FARSI_ORIGIN</a></p>
       <br>
@@ -536,12 +593,6 @@
   </div>
 </footer>
 
-
-
-
-
-
-  
 <!-- پاپ‌آپ (Modal) درگاه مالی / خرید -->
 <div id="premium-modal" class="modal-overlay" aria-hidden="true">
   <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -552,7 +603,7 @@
     </svg>
     <h3 id="modal-title" class="modal-title">تهیه نسخه ویژه</h3>
     <p class="modal-desc">درگاه مالی سایت هنوز راه‌اندازی نشده است. برای خرید این فارسی‌ساز ویژه و حمایت از ما، لطفاً به کانال تلگرام مراجعه کنید.</p>
-    
+
     <a href="https://t.me/FARSI_ORIGIN" target="_blank" rel="noopener" class="btn-telegram">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"></path><path d="M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
       مراجعه به @FARSI_ORIGIN
@@ -565,11 +616,9 @@
 (function(){
   "use strict";
 
-  // اسم مخزن طبق لینک ارسالی شما اصلاح شد
   const GH_OWNER = "Origin-Core";
   const GH_REPO  = "Farsi-Origin";
- const API_URL =
-  `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/`;
+  const API_URL  = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/`;
 
 async function fetchWithRetry(url, retries = 2) {
   for (let i = 0; i <= retries; i++) {
@@ -598,17 +647,14 @@ async function fetchWithRetry(url, retries = 2) {
 
   const IMAGE_EXTS   = ["png","jpg","jpeg","webp","gif"];
   const ARCHIVE_EXTS = ["zip","rar","7z"];
-  // فرمت html اضافه شد تا بتوانید از کدهای گرافیکی استفاده کنید
   const DESC_EXTS    = ["txt","md","html"];
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const grid = document.getElementById("games-grid");
   const modal = document.getElementById("premium-modal");
-  
-  // آرایه سراسری برای دسترسی به محصولات در صفحه اطلاعات بیشتر
+
   window.allProducts = [];
 
-  // توابع کنترل مودال خرید
   window.openPremiumModal = function() {
     modal.classList.add("active");
     modal.setAttribute("aria-hidden", "false");
@@ -657,7 +703,7 @@ async function fetchWithRetry(url, retries = 2) {
       const base = f.name.slice(0, dot);
       const ext  = f.name.slice(dot + 1).toLowerCase();
       const key  = base.toLowerCase().replace(/_paid/g, "");
-      
+
       if(!map[key]) {
         map[key] = { 
           displayName: humanizeName(base), 
@@ -669,7 +715,7 @@ async function fetchWithRetry(url, retries = 2) {
       } else {
         if(base.toLowerCase().includes("_paid")) map[key].isPaid = true;
       }
-      
+
       if(IMAGE_EXTS.includes(ext)) map[key].image = f;
       else if(ARCHIVE_EXTS.includes(ext)) map[key].archive = f;
       else if(DESC_EXTS.includes(ext)) map[key].desc = f;
@@ -710,11 +756,11 @@ async function fetchWithRetry(url, retries = 2) {
 
   function cardHTML(p, i){
     const sizeStr = formatSize(p.archive.size);
-    
+
     const premiumClass = p.isPaid ? "is-premium" : "";
     const ribbonClass  = p.isPaid ? "ribbon premium" : "ribbon";
     const ribbonText   = p.isPaid ? "نسخه ویژه (پولی)" : "فارسی‌سازی";
-    
+
     const buttonHtml = p.isPaid 
       ? `<button class="btn-buy" type="button" onclick="openPremiumModal()">
           <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
@@ -755,7 +801,6 @@ async function fetchWithRetry(url, retries = 2) {
     cards.forEach(c => io.observe(c));
   }
 
-  // لود نسخه خلاصه توضیحات برای صفحه اصلی
   async function loadDescriptions(products){
     await Promise.all(products.map(async (p, i) => {
       const el = document.getElementById(`desc-${i}`);
@@ -767,14 +812,13 @@ async function fetchWithRetry(url, retries = 2) {
         const res = await fetch(p.desc.download_url);
         if(!res.ok) throw new Error();
         let text = (await res.text()).trim();
-        
-        // اگر محتوا HTML بود، سعی میکنیم تگ‌ها را برای صفحه اصلی پاک کنیم
+
         if(p.desc.name.endsWith('.html') || (text.includes('<') && text.includes('>'))) {
            const temp = document.createElement("div");
            temp.innerHTML = text;
            text = temp.textContent || temp.innerText || "";
         }
-        
+
         if(!text) {
           if(el) el.textContent = "توضیحی برای این بازی ثبت نشده است.";
           return;
@@ -787,17 +831,14 @@ async function fetchWithRetry(url, retries = 2) {
     }));
   }
 
-  // --- توابع مربوط به صفحه اطلاعات بیشتر ---
-  
   window.openDetail = function(index) {
     const p = window.allProducts[index];
     if(!p) return;
-    
-    // ۱. جایگذاری اطلاعات اولیه
+
     document.getElementById('detail-image').src = p.image.download_url;
     document.getElementById('detail-title').textContent = p.displayName;
     document.getElementById('detail-size').textContent = `حجم: ${formatSize(p.archive.size)}`;
-    
+
     const badge = document.getElementById('detail-badge');
     if(p.isPaid) {
       badge.className = "ribbon premium";
@@ -806,8 +847,7 @@ async function fetchWithRetry(url, retries = 2) {
       badge.className = "ribbon";
       badge.textContent = "فارسی‌سازی";
     }
-    
-    // ۲. تنظیم دکمه اکشن (دانلود / خرید)
+
     const actionContainer = document.getElementById('detail-action');
     if(p.isPaid) {
       actionContainer.innerHTML = `<button class="btn-buy" style="padding: 1rem;" type="button" onclick="openPremiumModal()">
@@ -820,29 +860,25 @@ async function fetchWithRetry(url, retries = 2) {
           <span style="font-size: 1.1rem;">دانلود مستقیم و رایگان</span>
          </a>`;
     }
-    
-    // ۳. تغییر صفحات
+
     document.getElementById('home-view').style.display = 'none';
     document.getElementById('detail-view').style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'instant' });
-    
-    // ۴. لود توضیحات کامل از گیت‌هاب
+
     const contentArea = document.getElementById('detail-content');
     contentArea.innerHTML = '<div style="text-align:center; padding: 2rem;"><div class="skeleton-line w-40" style="margin:auto;"></div></div>';
-    
+
     if (p.desc) {
       fetch(p.desc.download_url)
         .then(r => r.text())
         .then(text => {
-          // اگر فایل HTML بود یا تگ HTML داشت، همون‌طور گرافیکی تزریقش کن
           if (p.desc.name.endsWith('.html') || (text.includes('<') && text.includes('>'))) {
             contentArea.innerHTML = text;
           } else {
-            // اگر txt ساده بود، پاراگراف‌بندی کن
-          contentArea.innerHTML = text
-        .replace(/\n/g, "<br>")
-    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-    .replace(/__(.*?)__/g, "<strong>$1</strong>");
+            contentArea.innerHTML = text
+              .replace(/\n/g, "<br>")
+              .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+              .replace(/__(.*?)__/g, "<strong>$1</strong>");
           }
         })
         .catch(() => contentArea.innerHTML = '<p style="color:var(--text-muted)">خطا در دریافت توضیحات کامل.</p>');
@@ -855,7 +891,6 @@ async function fetchWithRetry(url, retries = 2) {
     if(e && e.preventDefault) e.preventDefault();
     document.getElementById('detail-view').style.display = 'none';
     document.getElementById('home-view').style.display = 'block';
-    // اگر بخواهیم اسکرول به منوی بازی ها برگردد
     if(!e) {
       document.getElementById('games').scrollIntoView({ behavior: 'smooth' });
     } else {
@@ -863,10 +898,8 @@ async function fetchWithRetry(url, retries = 2) {
     }
   };
 
-  // ----------------------------------------
-
   function renderProducts(products){
-    window.allProducts = products; // ذخیره برای صفحه جزئیات
+    window.allProducts = products;
     grid.innerHTML = products.map((p, i) => cardHTML(p, i)).join("");
     observeCards();
     loadDescriptions(products);
@@ -875,14 +908,14 @@ async function fetchWithRetry(url, retries = 2) {
   async function loadGames(){
     renderSkeleton();
     try{
-     const files = await fetchWithRetry(API_URL);
+      const files = await fetchWithRetry(API_URL);
       if(!Array.isArray(files)) throw new Error("unexpected-response");
       const groups = groupFiles(files);
       const products = Object.values(groups).filter(g => g.image && g.archive);
       if(products.length === 0){ renderEmpty(); return; }
-      
+
       products.sort((a,b) => a.displayName.localeCompare(b.displayName, "fa"));
-      
+
       renderProducts(products);
     }catch(err){
       renderError();
