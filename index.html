@@ -109,7 +109,24 @@
 
   /* ---------- Hero ---------- */
   .hero{ padding-block:clamp(4rem,12vw,7rem) clamp(3rem,8vw,5rem); position:relative; overflow:hidden; }
-  .hero-inner{ max-width:760px; }
+  .hero-inner{ max-width:1100px; text-align:center; }
+  .hero-banner{
+    width:min(100%,1100px);
+    height:auto;
+    display:block;
+    margin:0 auto 2.5rem;
+    object-fit:contain;
+    filter:drop-shadow(0 18px 35px rgba(0,0,0,0.35));
+    transition:transform .45s var(--ease-spring), filter .45s ease;
+  }
+  .hero-banner:hover{
+    transform:translateY(-4px) scale(1.015);
+    filter:drop-shadow(0 22px 45px rgba(16,185,129,0.18));
+  }
+  .hero-content{
+    max-width:760px;
+    margin-inline:auto;
+  }
   .hero-title{
     font-family:var(--font-display); font-weight:400;
     font-size:clamp(2.4rem,6vw,4.2rem); line-height:1.25; margin:0 0 1.1rem;
@@ -446,7 +463,7 @@
   "name": "Farsi-Origin",
   "alternateName": "Farsi Origin",
   "url": "https://origin-core.github.io/Farsi-Origin/",
-  "description": "مجموعه فارسی‌سازی بازی‌های ویدیویی برای دانلود."
+  "description": "مجموعه فارسی‌سازی بازی‌های ویدیویی برای دانلود"
 }
 </script>
 
@@ -458,14 +475,13 @@
 <header class="site-header">
   <div class="container header-inner">
     <a class="logo" href="#top" aria-label="Farsi-Origin" onclick="closeDetail(event)">
-      <!-- کاراکتر کلاهخود گیمینگ مدرن -->
-<!-- لوگوی PNG -->
-<img
-  class="logo-mark"
-  src="https://raw.githubusercontent.com/Origin-Core/Farsi-Origin/main/bbbggg.png"
-  alt="Farsi-Origin"
-  aria-hidden="true"
-/>
+      <!-- لوگوی PNG -->
+      <img
+        class="logo-mark"
+        src="https://raw.githubusercontent.com/Origin-Core/Farsi-Origin/main/bbbggg.png"
+        alt="Farsi-Origin"
+        aria-hidden="true"
+      />
       <span class="logo-text">Farsi<span class="logo-accent">-Origin</span></span>
     </a>
     <nav class="nav">
@@ -480,13 +496,23 @@
 <main id="home-view">
   <section class="hero" id="top">
     <div class="container hero-inner">
-      <p class="eyebrow">فارسی‌سازی بازی‌های ویدیویی</p>
-      <h1 class="hero-title">   Farsi-Originفارسی‌سازی بازی‌های ویدیویی</h1>
-      <p class="hero-sub">  در Farsi-Origin فارسی‌ساز بازی‌های ویدیویی Farsi origin فارسی سازی دقیق بازی های ویدیویی</p>
-      <a class="btn-primary" href="#games">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-        دیدن فارسی‌سازی‌ها
-      </a>
+
+      <!-- بنر اصلی سایت -->
+      <img
+        class="hero-banner"
+        src="https://raw.githubusercontent.com/Origin-Core/Farsi-Origin/main/dddmmm.png"
+        alt="Farsi-Origin"
+      />
+
+      <div class="hero-content">
+        <h1 class="hero-title">   Farsi-Originفارسی‌سازی بازی‌های ویدیویی</h1>
+        <p class="hero-sub"> ما تلاش میکنیم فارسی ساز اکثر بازی هارو براتون قرار بدیم مخصوصا گیم هایی که فارسی سازش در جایی موجود نیست</p>
+        <a class="btn-primary" href="#games">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          دیدن فارسی‌سازی‌ها
+        </a>
+      </div>
+
     </div>
   </section>
 
@@ -520,7 +546,7 @@
       <div class="request-box">
         <h2 class="request-title">فارسی ساز بازیتو پیدا نکردی؟</h2>
         <p class="request-desc">
-          برای اینکه فارسی ساز بازی مورد نظرتونو اضافه کنیم در ربات تلگرام بازی خود را اضافه کنید 
+          برای اینکه فارسی ساز بازی مورد نظرتونو اضافه کنیم در ربات تلگرام نام بازی خود را اضافه کنید 
           <a href="https://t.me/ORIGIN_CORE_IR_bot" target="_blank" rel="noopener" class="request-link">@ORIGIN_CORE_IR_bot</a>
           <br>
           برای اطلاع از فارسی ساز های اضافه شده در <a href="https://t.me/farsi_origin" target="_blank" rel="noopener" class="request-link">کانال تلگرام ما</a> عضو بشید.
